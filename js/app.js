@@ -5,10 +5,10 @@ class Character1 {
 	constructor(name) {
 		this.name = name,
 		this.health = 100,
-		this.attackValue = Math.floor(Math.random() * (10 - 5)) + 5;
+		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
 		console.log(this.attackValue);
-		this.attackSpeed = 1.5,
-		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
+		//this.attackSpeed = 1.5,
+		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25;
 		console.log(this.health);	
 	}
 
@@ -19,9 +19,9 @@ class Character2 {
 	constructor(name) {
 		this.name = name,
 		this.health = 125,
-		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
-		this.attackSpeed = 1,
-		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25
+		this.attackValue = Math.floor(Math.random() * (10 - 5)) + 5;
+		//this.attackSpeed = 1,
+		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
 
 	}
 
@@ -66,38 +66,49 @@ const game  = {
 		const interval = setInterval(() => {
 			this.time -=1
 			$timer.text(`Timer: ${this.time}`);
-			if(this.time === 0){
+			if(game.endRound()){
 				clearInterval(interval)
 			}
 		}, 1000)
-	},
+	},//basic attack for characteer 1
 	basicAttack(){
 		this.char2.health -= this.char.attackValue;
 		console.log('Char 1 attacked with ', this.char.attackValue + ' damage!');
 		console.log('Char 2 has ', this.char2.health + ' health remaining!');
-	},
+	},//basic attack for character 2
 	basicAttack2(){
 		this.char.health -= this.char2.attackValue;
 		console.log('Char 2 attacked with ', this.char2.attackValue + ' damage');
 		console.log('Char 1 has ', this.char.health + ' health remaining!');
-	},
+	},//ultimate ability for character 1
 	ultimateAttack1(){
 		this.char2.health -= this.char.ultimateValue;
 		console.log('Char 1 used his ultimate for ', this.char.ultimateValue + ' damage');
 		console.log('Char 2 has ', this.char2.health + ' health remaining!');
-	},
+	},//ultimate ability for character 2
 	ultimateAttack2(){
 		this.char.health -= this.char2.ultimateValue;
 		console.log('Char 2 used his ultimate for ', this.char2.ultimateValue + ' damage');
 		console.log('Chat 1 has ', this.char.health + ' health remaining!');
-	}
-	// endGame(){
-	// 	if(this.char.health <= 0) {
-	// 		alert('Game over player one lost')
-	// 	}	else if(this.char2.health <= 0){
-	// 		alert('Game over player two lost')
-	// 	}
+	},//block function that allows player to take reduced damae from the following attack
+	// block(){
+	// 	this.char.health -= Math.floor(Math.random() * (10-20)) + 20;
 	// }
+	heal1(){
+		this.char.health += 10
+		console.log('Char 1 used a heal ', this.char.health + ' health remaining!');
+	},
+	heal2(){
+		this.char2.health += 10
+		console.log('Char 2 used a heal ', this.char2.health + ' health remaining!');
+	},
+	endRound(){
+		if(this.time === 0){
+				return true
+				clearInterval(interval)
+				alert('Round over')
+			}
+	}
 }
 
 
@@ -147,4 +158,12 @@ $('#ulti1').on('click', () => {
 
 $('#ulti2').on('click', () => {
 	game.ultimateAttack2();
+})
+
+$('#heal1').on('click', () => {
+	game.heal1();
+})
+
+$('#heal2').on('click', () => {
+	game.heal2();
 })
