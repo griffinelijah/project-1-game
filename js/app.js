@@ -52,12 +52,13 @@ const game  = {
         $('#charName').html($('#input-box').val());
         $name.text(`Name: ${this.char.name}`)
         console.log(this.char);
+      	//instantiate char2  
         const $char2Name = $('#input-box2').val();
         this.char2 = new Character2($char2Name);
         const $name2 = $('#charName');
         $('#charName').html($('#input-box2').val());
         $name2.text(`Name: ${this.char.name}`)
-
+        console.log(this.char2);
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
 	setTimer(){
@@ -71,12 +72,22 @@ const game  = {
 		}, 1000)
 	},
 	basicAttack(){
+		this.char2.health -= this.char.attackValue;
+		console.log('Char 1 attacked with ', this.char.attackValue + ' damage!');
+		console.log('Char 2 has ', this.char2.health + ' health remaining!');
+	},
+	basicAttack2(){
 		this.char.health -= this.char2.attackValue;
-		console.log(this.char2.attackValue);
-		console.log(this.char.health);
-
-
-	}
+		console.log('Char 2 attacked with ', this.char2.attackValue + ' damage');
+		console.log('Char 1 has ', this.char.health + ' health remaining!');
+	},
+	// endGame(){
+	// 	if(this.char.health <= 0) {
+	// 		alert('Game over player one lost')
+	// 	}	else if(this.char2.health <= 0){
+	// 		alert('Game over player two lost')
+	// 	}
+	// }
 }
 
 
@@ -113,5 +124,7 @@ $('form').on('submit', () => {
 $('#attack').on('click', () => {
 	game.basicAttack();
 
-	
+})
+$('#attack2').on('click', () => {
+	game.basicAttack2();
 })
