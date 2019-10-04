@@ -47,11 +47,16 @@ const game  = {
 	//start will take input to name each character
 	start(name){
 		const $charName = $('#input-box').val();
-        this.char = new Character3($charName);
+        this.char = new Character1($charName);
         const $name = $('#charName');
         $('#charName').html($('#input-box').val());
         $name.text(`Name: ${this.char.name}`)
         console.log(this.char);
+        const $char2Name = $('#input-box2').val();
+        this.char = new Character2($char2Name);
+        const $name2 = $('#charName');
+        $('#charName').html($('#input-box2').val());
+        $name2.text(`Name: ${this.char.name}`)
 
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
