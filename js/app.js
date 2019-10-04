@@ -19,6 +19,12 @@ const characters = [
 	health: 125,
 	attackValue: Math.floor(Math.random() * (15 - 8)) + 8,
 	ultimateValue: Math.floor(Math.random() * (30 - 12)) + 12
+},
+{
+	name: 'glacius',
+	health: 100,
+	attackValue: Math.floor(Math.random() * (10 - 8)) + 8,
+	ultimateValue: Math.floor(Math.random() * (40 - 30)) + 30  
 }
 ]
 //Classes for each type of choosable character will hold properties unique to that character
