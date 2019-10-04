@@ -9,7 +9,7 @@ class Character1 {
 		console.log(this.attackValue);
 		this.attackSpeed = 1.5,
 		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
-
+		console.log(this.health);	
 	}
 
 }
@@ -53,7 +53,7 @@ const game  = {
         $name.text(`Name: ${this.char.name}`)
         console.log(this.char);
         const $char2Name = $('#input-box2').val();
-        this.char = new Character2($char2Name);
+        this.char2 = new Character2($char2Name);
         const $name2 = $('#charName');
         $('#charName').html($('#input-box2').val());
         $name2.text(`Name: ${this.char.name}`)
@@ -63,9 +63,19 @@ const game  = {
 	setTimer(){
 		$timer = $('h2')
 		const interval = setInterval(() => {
-			this.time --
+			this.time -=1
 			$timer.text(`Timer: ${this.time}`);
+			if(this.time === 0){
+				clearInterval(interval)
+			}
 		}, 1000)
+	},
+	basicAttack(){
+		this.char.health -= this.char2.attackValue;
+		console.log(this.char2.attackValue);
+		console.log(this.char.health);
+
+
 	}
 }
 
@@ -100,4 +110,8 @@ $('form').on('submit', () => {
 	game.setTimer()
 	
 })
+$('#attack').on('click', () => {
+	game.basicAttack();
 
+	
+})
