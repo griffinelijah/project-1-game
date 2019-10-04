@@ -6,10 +6,10 @@ class Character1 {
 		this.name = name,
 		this.health = 100,
 		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
-		console.log(this.attackValue);
+		//console.log(this.attackValue);
 		//this.attackSpeed = 1.5,
 		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25;
-		console.log(this.health);	
+		//console.log(this.health);	
 	}
 
 }
@@ -45,19 +45,25 @@ const game  = {
 	time : 30,
 	char: null,
 	//start will take input to name each character
-	start(name){
+	start1(name){
+		let $value1 = prompt('Choose your character')
 		const $charName = $('#input-box').val();
         this.char = new Character1($charName);
         const $name = $('#charName');
+        //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
         $('#charName').html($('#input-box').val());
-        $name.text(`Name: ${this.char.name}`)
+        $name.text(`Player one is ${this.char.name} he chose character ${$value1}`)
         console.log(this.char);
-      	//instantiate char2  
+	},
+	start2(name){
+		//instantiate char2
+		let $value2 = prompt('Choose your character')  
         const $char2Name = $('#input-box2').val();
         this.char2 = new Character2($char2Name);
-        const $name2 = $('#charName');
-        $('#charName').html($('#input-box2').val());
-        $name2.text(`Name: ${this.char.name}`)
+        const $name2 = $('#char2Name');
+          //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
+        $('#char2Name').html($('#input-box2').val());
+        $name2.text(`Player two is ${this.char2.name} he chose character ${$value2}`)
         console.log(this.char2);
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
@@ -94,15 +100,15 @@ const game  = {
 	// block(){
 	// 	this.char.health -= Math.floor(Math.random() * (10-20)) + 20;
 	// }
-	heal1(){
+	heal1(){//Heals character one by 10 health
 		this.char.health += 10
 		console.log('Char 1 used a heal ', this.char.health + ' health remaining!');
 	},
-	heal2(){
+	heal2(){//heals character two by 10 health
 		this.char2.health += 10
 		console.log('Char 2 used a heal ', this.char2.health + ' health remaining!');
 	},
-	endRound(){
+	endRound(){//if timer reaches zero end countdown and display alert statnig round is over
 		if(this.time === 0){
 				return true
 				clearInterval(interval)
@@ -111,6 +117,8 @@ const game  = {
 	}
 }
 
+//property to check if player is blocking before every attack stage
+//if you isBlocking = true then half damage taken from incoming attack
 
 
 
@@ -135,14 +143,17 @@ const game  = {
 
 
 
-$('form').on('submit', () => {
+$('#form1').on('submit', () => {
 	event.preventDefault();
-	$('#tomName').html();
-	game.start(name)
-	game.setTimer()
+	game.start1(name);
 	
 })
-
+$('#form2').on('submit', () => {
+	event.preventDefault();
+	game.start2(name);
+	game.setTimer();
+	
+})
 $('#attack').on('click', () => {
 	game.basicAttack();
 
