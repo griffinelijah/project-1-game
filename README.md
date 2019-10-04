@@ -11,7 +11,7 @@
 - Last standing player will be declared the winner
 - Players will have ability to restart game and try to battle again or select new characters
    
-### Wireframe: https://wireframe.cc/U0IlIs
+### Wireframe: ![image](https://user-images.githubusercontent.com/54421074/66224432-75ab7100-e69b-11e9-9a7e-088857830639.png)
     
 
 #### There will be a pool of characters to select from
