@@ -28,21 +28,21 @@ class Character2 {
 }
 
 
-class Character3 {
-	constructor(name) {
-		this.name = name,
-		this.health = 150,
-		this.attackValue = Math.floor(Math.random() * (18 - 14)) + 14;
-		this.attackSpeed = .5,
-		this.ultimateValue = Math.floor(Math.random() * (50 - 40)) + 40;
+// class Character3 {
+// 	constructor(name) {
+// 		this.name = name,
+// 		this.health = 150,
+// 		this.attackValue = Math.floor(Math.random() * (18 - 14)) + 14;
+// 		this.attackSpeed = .5,
+// 		this.ultimateValue = Math.floor(Math.random() * (50 - 40)) + 40;
 
-	}
+// 	}
 
-}
+// }
 
 //game object will hold all functions for operation the game
 const game  = {
-	time : 0,
+	time : 30,
 	char: null,
 	//start will take input to name each character
 	start(name){
@@ -60,10 +60,15 @@ const game  = {
 
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
-	// setStats(){
-
-	// }
+	setTimer(){
+		$timer = $('h2')
+		const interval = setInterval(() => {
+			this.time --
+			$timer.text(`Timer: ${this.time}`);
+		}, 1000)
+	}
 }
+
 
 
 
@@ -92,6 +97,7 @@ $('form').on('submit', () => {
 	event.preventDefault();
 	$('#tomName').html();
 	game.start(name)
+	game.setTimer()
 	
 })
 
