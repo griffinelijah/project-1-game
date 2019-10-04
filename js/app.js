@@ -81,6 +81,16 @@ const game  = {
 		console.log('Char 2 attacked with ', this.char2.attackValue + ' damage');
 		console.log('Char 1 has ', this.char.health + ' health remaining!');
 	},
+	ultimateAttack1(){
+		this.char2.health -= this.char.ultimateValue;
+		console.log('Char 1 used his ultimate for ', this.char.ultimateValue + ' damage');
+		console.log('Char 2 has ', this.char2.health + ' health remaining!');
+	},
+	ultimateAttack2(){
+		this.char.health -= this.char2.ultimateValue;
+		console.log('Char 2 used his ultimate for ', this.char2.ultimateValue + ' damage');
+		console.log('Chat 1 has ', this.char.health + ' health remaining!');
+	}
 	// endGame(){
 	// 	if(this.char.health <= 0) {
 	// 		alert('Game over player one lost')
@@ -121,10 +131,20 @@ $('form').on('submit', () => {
 	game.setTimer()
 	
 })
+
 $('#attack').on('click', () => {
 	game.basicAttack();
 
 })
+
 $('#attack2').on('click', () => {
 	game.basicAttack2();
+})
+
+$('#ulti1').on('click', () => {
+	game.ultimateAttack1();
+})
+
+$('#ulti2').on('click', () => {
+	game.ultimateAttack2();
 })
