@@ -1,31 +1,52 @@
 console.log('start');
 
+
+const characters = [
+{
+	name: 'pyro',
+	health: 100,
+	attackValue: Math.floor(Math.random() * (12 - 7)) + 7,
+	ultimateValue: Math.floor(Math.random() * (35 -25)) + 25
+},
+{
+	name: 'fayde',
+	health: 125,
+	attackValue: Math.floor(Math.random() * (10 - 5)) + 5,
+	ultimateValue: Math.floor(Math.random() * (30-20)) + 20
+},
+{
+	name: 'devo',
+	health: 125,
+	attackValue: Math.floor(Math.random() * (15 - 8)) + 8,
+	ultimateValue: Math.floor(Math.random() * (30 - 12)) + 12
+}
+]
 //Classes for each type of choosable character will hold properties unique to that character
-class Character1 {
-	constructor(name) {
-		this.name = name,
-		this.health = 100,
-		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
-		//console.log(this.attackValue);
-		//this.attackSpeed = 1.5,
-		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25;
-		//console.log(this.health);	
-	}
+// class Character1 {
+// 	constructor(name) {
+// 		this.name = name,
+// 		this.health = 100,
+// 		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
+// 		//console.log(this.attackValue);
+// 		//this.attackSpeed = 1.5,
+// 		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25;
+// 		//console.log(this.health);	
+// 	}
 
-}
+// }
 
 
-class Character2 {
-	constructor(name) {
-		this.name = name,
-		this.health = 125,
-		this.attackValue = Math.floor(Math.random() * (10 - 5)) + 5;
-		//this.attackSpeed = 1,
-		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
+// class Character2 {
+// 	constructor(name) {
+// 		this.name = name,
+// 		this.health = 125,
+// 		this.attackValue = Math.floor(Math.random() * (10 - 5)) + 5;
+// 		//this.attackSpeed = 1,
+// 		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
 
-	}
+// 	}
 
-}
+// }
 
 
 // class Character3 {
@@ -40,6 +61,13 @@ class Character2 {
 
 // }
 
+class Player {
+	constructor(name){
+	this.name = name
+	}
+
+}
+
 //game object will hold all functions for operation the game
 const game  = {
 	time : 30,
@@ -47,24 +75,26 @@ const game  = {
 	//start will take input to name each character
 	start1(name){
 		let $value1 = prompt('Choose your character')
-		const $charName = $('#input-box').val();
-        this.char = new Character1($charName);
+		//Take value of prompt to identify index withni character array to choose character
+		const $player1Name = $('#input-box').val();
+        this.playerOne = new Player($player1Name);
         const $name = $('#charName');
-        //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
-        $('#charName').html($('#input-box').val());
-        $name.text(`Player one is ${this.char.name} he chose character ${$value1}`)
-        console.log(this.char);
+        // //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
+        // $('#charName').html($('#input-box').val());
+        // $name.text(`Player one is ${this.player.name} he chose character ${$value1}`)
+        // console.log(this.char);
 	},
 	start2(name){
 		//instantiate char2
 		let $value2 = prompt('Choose your character')  
-        const $char2Name = $('#input-box2').val();
-        this.char2 = new Character2($char2Name);
+		//Take value of prompt to identify index withni character array to choose character
+        const $player2Name = $('#input-box2').val();
+        this.playerOne = new Player($player2Name);
         const $name2 = $('#char2Name');
-          //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
-        $('#char2Name').html($('#input-box2').val());
-        $name2.text(`Player two is ${this.char2.name} he chose character ${$value2}`)
-        console.log(this.char2);
+        //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
+        // $('#char2Name').html($('#input-box2').val());
+        // $name2.text(`Player two is ${this.char2.name} he chose character ${$value2}`)
+        // console.log(this.char2);
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
 	setTimer(){
