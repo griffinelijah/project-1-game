@@ -1,3 +1,32 @@
-body {
-	background-color: lightgrey;
+html {
+	background: url(https://img.freepik.com/free-vector/view-forest-sunset_46176-202.jpg?size=626&ext=jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	background-size: cover;
 }
+
+.forms {
+	display: flex;
+	justify-content: center;
+
+}
+
+#buttonsContainer {
+	width: 500px;
+	display: flex;
+	justify-content: space-between;
+}
+.buttons {
+color: rgb(255, 255, 255);
+font-size: 12px; 
+line-height: 12px; 
+padding: 6px; 
+border-radius: 50px; 
+font-family: monospace;, serif; 
+background-color: black; 
+box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
+border: 2px solid grey 
+display: inline-block;}
+.buttons:hover {
+background: grey; }
+.buttons:active {
+background: grey; }

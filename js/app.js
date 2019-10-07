@@ -68,9 +68,20 @@ console.log(characters[0].attackValue);
 
 // }
 
-class Player {
+class PlayerOne {
+	constructor(name){
+	this.name = name,
+	this.selectedChar = []
+
+	}
+
+}
+
+class PlayerTwo {
 	constructor(name){
 	this.name = name
+	//selectedChar = []
+
 	}
 
 }
@@ -79,24 +90,28 @@ class Player {
 const game  = {
 	time : 30,
 	char: null,
+
 	//start will take input to name each character
 	start1(name){
-		let $value1 = prompt('Choose your character')
+		 let $value1 = prompt('Choose your character')
+		console.log($value1);
+		//PlayerOne.selectedChar.push($value1);
+		//console.log(PlayerOne.selectedChar);
 		//Take value of prompt to identify index withni character array to choose character
 		const $player1Name = $('#input-box').val();
-        this.playerOne = new Player($player1Name);
+        this.playerOne = new PlayerOne($player1Name);
         const $name = $('#charName');
-        // //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
+        //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
         // $('#charName').html($('#input-box').val());
         // $name.text(`Player one is ${this.player.name} he chose character ${$value1}`)
         // console.log(this.char);
 	},
 	start2(name){
 		//instantiate char2
-		let $value2 = prompt('Choose your character')  
+		//et $value2 = prompt('Choose your character')  
 		//Take value of prompt to identify index withni character array to choose character
         const $player2Name = $('#input-box2').val();
-        this.playerOne = new Player($player2Name);
+        this.playerOne = new PlayerTwo($player2Name);
         const $name2 = $('#char2Name');
         //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
         // $('#char2Name').html($('#input-box2').val());
