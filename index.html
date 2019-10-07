@@ -4,20 +4,22 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<h1>This will be a game eventually</h1>
+	<h1>Choose Your Character</h1>
 	<h2>Timer: </h2>
+	<button id="hideButton">HideStuff</button>
 	<div id="player1Name"></div>
 	<div id="player2Name"></div>
 	<form class="forms" id="form1">
-		<input type="text" placeholder="Player One's Name" id="input-box">
-		<input type="submit" id="submit-button1">
+		<input type="text" placeholder="Player One's Name" class="inputButtons" id="input-box">
+		<input type="submit" class="submit-button">
 	</form>
 	<form class="forms" id="form2">
-		<input type="text" placeholder="Player Two's Name" id="input-box2">
-		<input type="submit" id="submit-button1">
+		<input type="text" placeholder="Player Two's Name" class="inputButtons" id="input-box2">
+		<input type="submit" class="submit-button">
 	</form>
 	<div id="buttonsContainer">
 	<button class="buttons" id="attack">Attack</button>

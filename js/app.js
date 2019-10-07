@@ -188,7 +188,12 @@ const game = {
     },
     characterPics(){
         $devoDiv = $('img')
-    }
+    },
+    hideStuff(){
+    let $buttons = document.getElementsByClassName('buttons')
+    console.log($buttons);
+    $($buttons).hide();
+}
 }
 
 //property to check if player is blocking before every attack stage
@@ -196,7 +201,10 @@ const game = {
 
 
 
-
+$('#hideButton').on('click', () => {
+    game.hideStuff();
+    
+})
 $('#form1').on('submit', () => {
     event.preventDefault();
     game.start1(name);

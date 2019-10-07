@@ -3,7 +3,9 @@ html {
 	-webkit-background-size: cover;
 	background-size: cover;
 }
-
+h1 {
+	font-family: 'Press Start 2P', cursive;
+}
 .forms {
 	display: flex;
 	justify-content: center;
@@ -15,19 +17,30 @@ html {
 	display: flex;
 	justify-content: space-between;
 }
+.inputButtons {
+    background-color: lightgrey;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.submit-button {
+	font-family: 'Press Start 2P', cursive;
+	background-color: black;
+	color: white;
+}
+
 .buttons {
+	font-family: 'Press Start 2P', cursive;
 color: rgb(255, 255, 255);
 font-size: 12px; 
 line-height: 12px; 
 padding: 6px; 
 border-radius: 50px; 
-font-family: monospace;, serif; 
 background-color: black; 
 box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
 border: 2px solid grey 
 display: inline-block;}
 .buttons:hover {
-background: grey; }
+background: red; }
 .buttons:active {
 background: grey; }
 
