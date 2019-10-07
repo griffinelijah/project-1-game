@@ -149,37 +149,37 @@ const game  = {
 	},//basic attack for characteer 1
 	basicAttack(){
 		//this will be changed to to pull from the selectedChar array to choose character
-		characters[1].health -= characters[0].attackValue;
-		console.log('Char 1 attacked with ', characters[0].attackValue + ' damage!');
-		console.log('Char 2 has ', characters[1].health + ' health remaining!');
+		playerTwo.selectedChar[0].health -= playerOne.selectedChar[0].attackValue;
+		console.log('Char 1 attacked with ', playerOne.selectedChar[0].attackValue + ' damage!');
+		console.log('Char 2 has ', playerTwo.selectedChar[0].health + ' health remaining!');
 	},//basic attack for character 2
 	basicAttack2(){
-		characters[0].health -= characters[1].attackValue;
-		console.log('Char 2 attacked with ', characters[1].attackValue+ ' damage');
-		console.log('Char 1 has ', characters[0].health + ' health remaining!');
+		playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].attackValue;
+		console.log('Char 2 attacked with ', playerTwo.selectedChar[0].attackValue+ ' damage');
+		console.log('Char 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
 	},//ultimate ability for character 1
 	ultimateAttack1(){
-		characters[1].health -= characters[0].ultimateValue;
-		console.log('Char 1 used his ultimate for ', characters[0].ultimateValue + ' damage');
-		console.log('Char 2 has ', characters[1].health + ' health remaining!');
+		playerTwo.selectedChar[0].health -= playerOne.selectedChar[0].ultimateValue;
+		console.log('Char 1 used his ultimate for ', playerOne.selectedChar[0].ultimateValue + ' damage');
+		console.log('Char 2 has ', playerTwo.selectedChar[0].health + ' health remaining!');
 	},//ultimate ability for character 2
 	ultimateAttack2(){
-		characters[0].health -= characters[1].ultimateValue;
-		console.log('Char 2 used his ultimate for ', characters[1].ultimateValue + ' damage');
-		console.log('Chat 1 has ', characters[0].health + ' health remaining!');
+		playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].ultimateValue;
+		console.log('Char 2 used his ultimate for ', playerTwo.selectedChar[0].health + ' damage');
+		console.log('Chat 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
 	},//block function that allows player to take reduced damae from the following attack
 	// block(){
 	// 	this.char.health -= Math.floor(Math.random() * (10-20)) + 20;
 	// }
 	heal1(){//Heals character one by 10 health
-		if(characters[0].health <= 100){
-		characters[0].health += 10 }
-		console.log('Char 1 used a heal ', characters[0].health + ' health remaining!');
+		if(playerOne.selectedChar[0].health <= 100){
+		playerOne.selectedChar[0].health += 10 }
+		console.log('Char 1 used a heal ', playerOne.selectedChar[0] + ' health remaining!');
 	},
 	heal2(){//heals character two by 10 health
-		if(characters[1].health <= 100){
-		characters[1].health += 10 }
-		console.log('Char 2 used a heal ', characters[1].health + ' health remaining!');
+		if(playerTwo.selectedChar[0] <= 100){
+		playerTwo.selectedChar[0] += 10 }
+		console.log('Char 2 used a heal ', playerTwo.selectedChar[0] + ' health remaining!');
 	},
 	endRound(){//if timer reaches zero end countdown and display alert statnig round is over
 		if(this.time === 0){
