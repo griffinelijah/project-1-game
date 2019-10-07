@@ -67,24 +67,33 @@ console.log(characters[0].attackValue);
 // 	}
 
 // }
-
-class PlayerOne {
-	constructor(name){
-	this.name = name,
-	this.selectedChar = []
-
-	}
-
+const playerOne = {
+	name: "",
+	selectedChar: [],
 }
 
-class PlayerTwo {
-	constructor(name){
-	this.name = name
-	//selectedChar = []
-
-	}
-
+const playerTwo = {
+	name: "",
+	selectedChar: [],
 }
+
+// class PlayerOne {
+// 	constructor(name){
+// 	this.name = name,
+// 	this.selectedChar = []
+
+// 	}
+
+// }
+
+// class PlayerTwo {
+// 	constructor(name){
+// 	this.name = name
+// 	//selectedChar = []
+
+// 	}
+
+// }
 
 //game object will hold all functions for operation the game
 const game  = {
@@ -93,14 +102,13 @@ const game  = {
 
 	//start will take input to name each character
 	start1(name){
-		 let $value1 = prompt('Choose your character')
-		console.log($value1);
+		//let $value1 = prompt('Choose your character')
 		//PlayerOne.selectedChar.push($value1);
 		//console.log(PlayerOne.selectedChar);
 		//Take value of prompt to identify index withni character array to choose character
-		const $player1Name = $('#input-box').val();
-        this.playerOne = new PlayerOne($player1Name);
-        const $name = $('#charName');
+		const $playerOne = $('#input-box').val();
+		$('#player1Name').append($playerOne)
+        //const $name = $('#charName');
         //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
         // $('#charName').html($('#input-box').val());
         // $name.text(`Player one is ${this.player.name} he chose character ${$value1}`)
@@ -110,13 +118,23 @@ const game  = {
 		//instantiate char2
 		//et $value2 = prompt('Choose your character')  
 		//Take value of prompt to identify index withni character array to choose character
-        const $player2Name = $('#input-box2').val();
-        this.playerOne = new PlayerTwo($player2Name);
-        const $name2 = $('#char2Name');
+        const $playerTwo = $('#input-box2').val();
+        $('#player2Name').append($playerTwo)
+        //const $name2 = $('#char2Name');
         //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
         // $('#char2Name').html($('#input-box2').val());
         // $name2.text(`Player two is ${this.char2.name} he chose character ${$value2}`)
         // console.log(this.char2);
+	},
+	chooseCharacter1(){
+		let $value1 = prompt('choose your character')
+		playerOne.selectedChar.push($value1)
+		console.log(playerOne.selectedChar);
+	},
+	chooseCharacter2(){
+		let $value2 = prompt('chose your character')
+		playerTwo.selectedChar.push($value2)
+		console.log(playerTwo.selectedChar);
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
 	setTimer(){
@@ -200,12 +218,14 @@ const game  = {
 $('#form1').on('submit', () => {
 	event.preventDefault();
 	game.start1(name);
+	game.chooseCharacter1();
 	
 })
 $('#form2').on('submit', () => {
 	event.preventDefault();
 	game.start2(name);
 	game.setTimer();
+	game.chooseCharacter2();
 	
 })
 $('#attack').on('click', () => {
