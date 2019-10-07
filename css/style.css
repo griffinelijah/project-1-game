@@ -1,5 +1,5 @@
 html {
-	background: url(https://img.freepik.com/free-vector/view-forest-sunset_46176-202.jpg?size=626&ext=jpg) no-repeat center center fixed;
+	background: url(http://3.bp.blogspot.com/-ntgY5VZzkp4/T8-aTXG_kzI/AAAAAAAAAHI/kuzWUHH0KDI/s1600/Level+one.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	background-size: cover;
 }
@@ -30,3 +30,43 @@ display: inline-block;}
 background: grey; }
 .buttons:active {
 background: grey; }
+
+#devo {
+	height: 300px;
+	width: 500px;
+}
+#fayde {
+	height: 350px;
+	width: 350px;
+}
+#glac {
+	height: 250px;
+	width: 200px;
+}
+#pyro {
+	height: 350px;
+	width:350px;
+}
+#soul {
+	height: 400px;
+	width: 350px;
+}
+#swift {
+	height: 325px;
+	width: 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

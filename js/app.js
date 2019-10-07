@@ -164,9 +164,10 @@ const game = {
         console.log('Char 2 used his ultimate for ', playerTwo.selectedChar[0].health + ' damage');
         console.log('Chat 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
     }, //block function that allows player to take reduced damae from the following attack
+    //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
-    heal1() { //Heals character one by 10 health
+    heal1() { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
         if (playerOne.selectedChar[0].health <= 100) {
             playerOne.selectedChar[0].health += 10
         }
@@ -184,6 +185,9 @@ const game = {
             clearInterval(interval)
             alert('Round over')
         }
+    },
+    characterPics(){
+        $devoDiv = $('img')
     }
 }
 
