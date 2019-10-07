@@ -128,12 +128,12 @@ const game  = {
 	},
 	chooseCharacter1(){
 		let $value1 = prompt('choose your character')
-		playerOne.selectedChar.push($value1)
+		playerOne.selectedChar.push(characters[$value1])
 		console.log(playerOne.selectedChar);
 	},
 	chooseCharacter2(){
 		let $value2 = prompt('chose your character')
-		playerTwo.selectedChar.push($value2)
+		playerTwo.selectedChar.push(characters[$value2])
 		console.log(playerTwo.selectedChar);
 	},
 	//the set stats function will control the damage ranges and ultimate ability timing of each characteer
@@ -148,6 +148,7 @@ const game  = {
 		}, 1000)
 	},//basic attack for characteer 1
 	basicAttack(){
+		//this will be changed to to pull from the selectedChar array to choose character
 		characters[1].health -= characters[0].attackValue;
 		console.log('Char 1 attacked with ', characters[0].attackValue + ' damage!');
 		console.log('Char 2 has ', characters[1].health + ' health remaining!');
@@ -224,8 +225,8 @@ $('#form1').on('submit', () => {
 $('#form2').on('submit', () => {
 	event.preventDefault();
 	game.start2(name);
-	game.setTimer();
 	game.chooseCharacter2();
+	game.setTimer();
 	
 })
 $('#attack').on('click', () => {
