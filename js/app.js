@@ -123,16 +123,6 @@ const game = {
         $('#player2Name').append($playerTwo)
         //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
     },
-    // chooseCharacter1() {
-    //     let $value1 = prompt('choose your character')
-    //     playerOne.selectedChar.push(characters[$value1])
-    //     console.log(playerOne.selectedChar);
-    // },
-    chooseCharacter2() {
-        let $value2 = prompt('chose your character')
-        playerTwo.selectedChar.push(characters[$value2])
-        console.log(playerTwo.selectedChar);
-    },
     //the set stats function will control the damage ranges and ultimate ability timing of each characteer
     setTimer() {
         $timer = $('h2')
@@ -183,11 +173,10 @@ const game = {
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time === 0) {
             return true
-            clearInterval(interval)
-            alert('Round over')
+            clearInterval(interval);
         }
     },
-    assignCharacter(){
+    chooseCharacter(){
             if(event.target.id === 'pyroSelect'){
             playerOne.selectedChar.push(characters[0])
         }   else if(event.target.id === 'faydeSelect'){
@@ -200,28 +189,50 @@ const game = {
             playerOne.selectedChar.push(characters[4])
         }   else if(event.target.id === 'soulSelect')
             playerOne.selectedChar.push(characters[5])
-
-    },
-    //this temporarily serves as a way for me to hide certain elements while i layout my UI
-    hideStuff(){
-        let $buttons = $('.attack-buttons')
-        let $timer = $('h2')
-        console.log($buttons);
-        $($buttons).hide();
-        $($timer).hide();
+            const $buttons = $('.attack-buttons')
+            $($buttons).hide();
+            const $charNames = $('.charNames')
+            $($charNames).hide();
+            const $charPics = $('.charPics')
+            $($charPics).hide();
+            const $selectors = $('.buttons')
+            $($selectors).hide();
+            const $forms  = $('.forms')
+            $($forms).hide();
+            const $chooseH1 = $('h1')
+            $chooseH1.hide();
+            $timerHide.show();
+            $($playerNames).show();
+            $attackButtons.show();
     }
+    // assignCharacter2(){
+    //         if(event.target.id === 'pyroSelect'){
+    //         playerTwo.selectedChar.push(characters[0])
+    //     }   else if(event.target.id === 'faydeSelect'){
+    //         playerTwo.selectedChar.push(characters[1])
+    //     }   else if(event.target.id === 'devoSelect'){
+    //         playerTwo.selectedChar.push(characters[2])
+    //     }   else if(event.target.id === 'glacSelect'){
+    //         playerTwo.selectedChar.push(characters[3])
+    //     }   else if(event.target.id === 'swiftSelect'){
+    //         playerTwo.selectedChar.push(characters[4])
+    //     }   else if(event.target.id === 'soulSelect')
+    //         playerTwo.selectedChar.push(characters[5])
+    // },
+    //this temporarily serves as a way for me to hide certain elements while i layout my UI
         
 }
-
+const $timerHide = $('h2')
+ $($timerHide).hide();
+const $playerNames = $('.playerNames')
+$($playerNames).hide();
+const $attackButtons = $('.attack-buttons')
+$($attackButtons).hide();
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
 
 
 
-$('#hideButton').on('click', () => {
-    game.hideStuff();
-    
-})
 $('#form1').on('submit', () => {
     event.preventDefault();
     game.start1(name);
@@ -231,7 +242,6 @@ $('#form1').on('submit', () => {
 $('#form2').on('submit', () => {
     event.preventDefault();
     game.start2(name);
-    game.chooseCharacter2();
     game.setTimer();
 
 })
@@ -262,7 +272,9 @@ $('#heal2').on('click', () => {
 $('.buttons').on('click', (event) => {
     //console.log(event);
     //console.log(event.target.id);
-    game.assignCharacter();
-    console.log(playerOne.selectedChar);
+    game.chooseCharacter();
+    console.log('This is player one selection', playerOne.selectedChar);
+    // game.assignCharacter2();
+    // console.log('This is player two selection', playerTwo.selectedChar);
     
 })
