@@ -88,14 +88,24 @@ const playerTwo = {
     selectedChar: [],
 }
 
-// class PlayerOne {
-// 	constructor(name){
-// 	this.name = name,
-// 	this.selectedChar = []
+class Player {
+	constructor(humanName, char){
+    	this.humanName = humanName
+        this.char = character
+        this.health = character.health
+        this.attackValue = character.attackValue
+        this.utlimateValue = character.ultimateValue
 
-// 	}
+	}
 
-// }
+    basicAttack(player){
+        this.health -= this.attackValue
+        console.log('playerOne did', this.attackValue + ' damage');
+        console.log('player two has ', this.health + ' remaining');
+
+        
+    }
+}
 
 // class PlayerTwo {
 // 	constructor(name){
@@ -110,6 +120,10 @@ const playerTwo = {
 const game = {
     time: 30,
     char: null,
+
+    players: [null, null],
+    activePlayerIndex: 0,
+    
     //this function holds all elements that will be hidden upon loading the game
     hiddenElements(){
         const $timerHide = $('h2')
@@ -184,9 +198,12 @@ const game = {
             clearInterval(interval);
         }
     },
-    chooseCharacter(){//add selected character to players selected character array
+    chooseCharacter(event){
+        console.log("hey, here's event in chooseCharacter1");
+        console.log(event.target.id);
+        //add selected character to players selected character array
         //this needs to be updated to implement seletion for both players
-            if(event.target.id === 'pyroSelect'){
+        if(event.target.id === 'pyroSelect'){
             playerOne.selectedChar.push(characters[0])
         }   else if(event.target.id === 'faydeSelect'){
             playerOne.selectedChar.push(characters[1])
@@ -216,7 +233,7 @@ const game = {
             $($timerHide).show();
             $($playerNames).show();
             $($attackButtons).show();
-    }
+    },
 
     
     // assignCharacter2(){
@@ -234,7 +251,7 @@ const game = {
     //         playerTwo.selectedChar.push(characters[5])
     // },
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
-        
+
 }
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
@@ -280,11 +297,9 @@ $('#heal2').on('click', () => {
     game.heal2();
 })
 $('.buttons').on('click', (event) => {
-    console.log(event);
-    //console.log(event.target.id);
-    game.chooseCharacter();
-    console.log('This is player one selection', playerOne.selectedChar);
+    game.chooseCharacter(event);
     // game.assignCharacter2();
     // console.log('This is player two selection', playerTwo.selectedChar);
-    
-})
+
+})  
+
