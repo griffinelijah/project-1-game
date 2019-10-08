@@ -39,72 +39,26 @@ const characters = [{
     }
 ]
 console.log(characters[0].attackValue);
-//Classes for each type of choosable character will hold properties unique to that character
-// class Character1 {
-// 	constructor(name) {
-// 		this.name = name,
-// 		this.health = 100,
-// 		this.attackValue = Math.floor(Math.random() * (12 - 7)) + 7;
-// 		//console.log(this.attackValue);
-// 		//this.attackSpeed = 1.5,
-// 		this.ultimateValue = Math.floor(Math.random() * (35 - 25)) + 25;
-// 		//console.log(this.health);	
-// 	}
 
 // }
-
-
-// class Character2 {
-// 	constructor(name) {
-// 		this.name = name,
-// 		this.health = 125,
-// 		this.attackValue = Math.floor(Math.random() * (10 - 5)) + 5;
-// 		//this.attackSpeed = 1,
-// 		this.ultimateValue = Math.floor(Math.random() * (30 - 20)) + 20;
-
-// 	}
-
+// const playerOne = {
+//     name: "",
+//     selectedChar: [],
 // }
 
-
-// class Character3 {
-// 	constructor(name) {
-// 		this.name = name,
-// 		this.health = 150,
-// 		this.attackValue = Math.floor(Math.random() * (18 - 14)) + 14;
-// 		this.attackSpeed = .5,
-// 		this.ultimateValue = Math.floor(Math.random() * (50 - 40)) + 40;
-
-// 	}
-
+// const playerTwo = {
+//     name: "",
+//     selectedChar: [],
 // }
-const playerOne = {
-    name: "",
-    selectedChar: [],
-}
-
-const playerTwo = {
-    name: "",
-    selectedChar: [],
-}
 
 class Player {
 	constructor(humanName, char){
-    	this.humanName = humanName
-        this.char = character
-        this.health = character.health
-        this.attackValue = character.attackValue
-        this.utlimateValue = character.ultimateValue
-
+    	this.humanName = humanName,
+        this.char = characters.name,
+        this.health = characters.health,
+        this.attackValue = characters.attackValue,
+        this.ultimateValue = characters.ultimateValue
 	}
-
-    basicAttack(player){
-        this.health -= this.attackValue
-        console.log('playerOne did', this.attackValue + ' damage');
-        console.log('player two has ', this.health + ' remaining');
-
-        
-    }
 }
 
 // class PlayerTwo {
@@ -120,31 +74,43 @@ class Player {
 const game = {
     time: 30,
     char: null,
-
-    players: [null, null],
+    players: [{
+        name: 'tom',
+        health: 100,
+        attackValue: 10,
+        ultimateValue: 29,
+    }, {
+        name: 'greg',
+        health: 100,
+        attackValue: 15,
+        ultimateValue: 20
+    }],
     activePlayerIndex: 0,
+
     
     //this function holds all elements that will be hidden upon loading the game
-    hiddenElements(){
-        const $timerHide = $('h2')
-        $($timerHide).hide();
-        const $playerNames = $('.playerNames')
-        $($playerNames).hide();
-        const $attackButtons = $('.attack-buttons')
-        $($attackButtons).hide();
-    },
+    // hiddenElements(){
+    //     const $timerHide = $('h2')
+    //     $($timerHide).hide();
+    //     const $playerNames = $('.playerNames')
+    //     $($playerNames).hide();
+    //     const $attackButtons = $('.attack-buttons')
+    //     $($attackButtons).hide();
+    // },
 
     //start will take input to name each character
-    start1(name) {
-        const $playerOne = $('#input-box').val();
-        $('#player1Name').append($playerOne)
+    start(player1, player2) {
+        console.log(player1);
+        this.players[0] = player1
+        console.log(player2);
+        this.players[1] = player2
         //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer instead of using prompt
     },
-    start2(name) {
-        const $playerTwo = $('#input-box2').val();
-        $('#player2Name').append($playerTwo)
-        //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
-    },
+    // start2(name) {
+    //     const $playerTwo = $('#input-box2').val();
+    //     $('#player2Name').append($playerTwo)
+    //     //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
+    //},
     //the set stats function will control the damage ranges and ultimate ability timing of each characteer
     setTimer() {
         $timer = $('h2')
@@ -156,42 +122,49 @@ const game = {
             }
         }, 1000)
     }, //basic attack for characteer 1
-    basicAttack() {
+    basicAttack(attackingPlayerIndex) {
+        const attackingPlayer = this.players[attackingPlayerIndex]
+        console.log(attackingPlayer);
+        const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
+        console.log(defendingPlayer);
         //this will be changed to to pull from the selectedChar array to choose character
-        playerTwo.selectedChar[0].health -= playerOne.selectedChar[0].attackValue;
-        console.log('Char 1 attacked with ', playerOne.selectedChar[0].attackValue + ' damage!');
-        console.log('Char 2 has ', playerTwo.selectedChar[0].health + ' health remaining!');
+        defendingPlayer.health -= attackingPlayer.attackValue;
+        console.log(attackingPlayer.name, ' attacked for' + attackingPlayer.attackValue + ' damage!');
+        console.log(defendingPlayer.name, ' has ' + defendingPlayer.health + ' health remaining!');
     }, //basic attack for character 2
-    basicAttack2() {
-        playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].attackValue;
-        console.log('Char 2 attacked with ', playerTwo.selectedChar[0].attackValue + ' damage');
-        console.log('Char 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
-    }, //ultimate ability for character 1
-    ultimateAttack1() {
-        playerTwo.selectedChar[0].health -= playerOne.selectedChar[0].ultimateValue;
-        console.log('Char 1 used his ultimate for ', playerOne.selectedChar[0].ultimateValue + ' damage');
-        console.log('Char 2 has ', playerTwo.selectedChar[0].health + ' health remaining!');
+    // basicAttack2() {
+    //     playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].attackValue;
+    //     console.log('Char 2 attacked with ', playerTwo.selectedChar[0].attackValue + ' damage');
+    //     console.log('Char 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
+    // }, //ultimate ability for character 1
+    ultimateAttack1(attackingPlayerIndex) {
+        const attackingPlayer = this.players[attackingPlayerIndex]
+        const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
+        defendingPlayer.health -=  attackingPlayer.ultimateValue
+        console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
+        console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
     }, //ultimate ability for character 2
-    ultimateAttack2() {
-        playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].ultimateValue;
-        console.log('Char 2 used his ultimate for ', playerTwo.selectedChar[0].health + ' damage');
-        console.log('Chat 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
-    }, //block function that allows player to take reduced damae from the following attack
+    // ultimateAttack2() {
+    //     playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].ultimateValue;
+    //     console.log('Char 2 used his ultimate for ', playerTwo.selectedChar[0].health + ' damage');
+    //     console.log('Chat 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
+    // }, //block function that allows player to take reduced damae from the following attack
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
-    heal1() { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
-        if (playerOne.selectedChar[0].health <= 100) {
-            playerOne.selectedChar[0].health += 10
-        }
-        console.log('Char 1 used a heal ', playerOne.selectedChar[0] + ' health remaining!');
+    heal1(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
+        // const firstPlayer = this.players[playerIndex]
+        // const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
+        // firstPlayer.health += 10;
+        // secondPlayer.healyth += 10;
+        // console.log(playerIndex + playerIndex.health + ' health remaining!');
     },
-    heal2() { //heals character two by 10 health
-        if (playerTwo.selectedChar[0] <= 100) {
-            playerTwo.selectedChar[0] += 10
-        }
-        console.log('Char 2 used a heal ', playerTwo.selectedChar[0] + ' health remaining!');
-    },
+    // heal2() { //heals character two by 10 health
+    //     if (playerTwo.selectedChar[0] <= 100) {
+    //         playerTwo.selectedChar[0] += 10
+    //     }
+    //     console.log('Char 2 used a heal ', playerTwo.selectedChar[0] + ' health remaining!');
+    // },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time === 0) {
             return true
@@ -199,6 +172,9 @@ const game = {
         }
     },
     chooseCharacter(event){
+        // pass a player, not an event
+        // this.players[0]
+        // call this method again at some point for this.players[1]
         console.log("hey, here's event in chooseCharacter1");
         console.log(event.target.id);
         //add selected character to players selected character array
@@ -259,42 +235,47 @@ const game = {
 
 
 
-game.hiddenElements();
+//game.hiddenElements();
 $('#form1').on('submit', () => {
     event.preventDefault();
-    game.start1(name);
+    const $playerOneName = $('#input-box').val();
+    const player1 = new Player($playerOneName,)
+    const $playerTwoName = $('#input-box2').val();
+    const player2 = new Player($playerTwoName)
     //game.chooseCharacter1();
-
+    // get the value from input-box (aka player1 name)
+    // get the value from input-box2 (aka player2 name)
+    game.start(player1, player2)
 })
 $('#form2').on('submit', () => {
     event.preventDefault();
-    game.start2(name);
+    game.start(name);
     game.setTimer();
 
 })
 $('#attack').on('click', () => {
-    game.basicAttack();
+    game.basicAttack(0);
 
 })
 
 $('#attack2').on('click', () => {
-    game.basicAttack2();
+    game.basicAttack(1);
 })
 
 $('#ulti1').on('click', () => {
-    game.ultimateAttack1();
+    game.ultimateAttack1(0);
 })
 
 $('#ulti2').on('click', () => {
-    game.ultimateAttack2();
+    game.ultimateAttack1(1);
 })
 
 $('#heal1').on('click', () => {
-    game.heal1();
+    game.heal1(0);
 })
 
 $('#heal2').on('click', () => {
-    game.heal2();
+    game.heal1(1);
 })
 $('.buttons').on('click', (event) => {
     game.chooseCharacter(event);
