@@ -111,6 +111,7 @@ const game = {
     time: 30,
     char: null,
 
+
     //start will take input to name each character
     start1(name) {
         const $playerOne = $('#input-box').val();
@@ -122,11 +123,11 @@ const game = {
         $('#player2Name').append($playerTwo)
         //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
     },
-    chooseCharacter1() {
-        let $value1 = prompt('choose your character')
-        playerOne.selectedChar.push(characters[$value1])
-        console.log(playerOne.selectedChar);
-    },
+    // chooseCharacter1() {
+    //     let $value1 = prompt('choose your character')
+    //     playerOne.selectedChar.push(characters[$value1])
+    //     console.log(playerOne.selectedChar);
+    // },
     chooseCharacter2() {
         let $value2 = prompt('chose your character')
         playerTwo.selectedChar.push(characters[$value2])
@@ -186,14 +187,30 @@ const game = {
             alert('Round over')
         }
     },
-    characterPics(){
-        $devoDiv = $('img')
+    assignCharacter(){
+            if(event.target.id === 'pyroSelect'){
+            playerOne.selectedChar.push(characters[0])
+        }   else if(event.target.id === 'faydeSelect'){
+            playerOne.selectedChar.push(characters[1])
+        }   else if(event.target.id === 'devoSelect'){
+            playerOne.selectedChar.push(characters[2])
+        }   else if(event.target.id === 'glacSelect'){
+            playerOne.selectedChar.push(characters[3])
+        }   else if(event.target.id === 'swiftSelect'){
+            playerOne.selectedChar.push(characters[4])
+        }   else if(event.target.id === 'soulSelect')
+            playerOne.selectedChar.push(characters[5])
+
     },
+    //this temporarily serves as a way for me to hide certain elements while i layout my UI
     hideStuff(){
-    let $buttons = document.getElementsByClassName('buttons')
-    console.log($buttons);
-    $($buttons).hide();
-}
+        let $buttons = $('.attack-buttons')
+        let $timer = $('h2')
+        console.log($buttons);
+        $($buttons).hide();
+        $($timer).hide();
+    }
+        
 }
 
 //property to check if player is blocking before every attack stage
@@ -208,7 +225,7 @@ $('#hideButton').on('click', () => {
 $('#form1').on('submit', () => {
     event.preventDefault();
     game.start1(name);
-    game.chooseCharacter1();
+    //game.chooseCharacter1();
 
 })
 $('#form2').on('submit', () => {
@@ -241,4 +258,11 @@ $('#heal1').on('click', () => {
 
 $('#heal2').on('click', () => {
     game.heal2();
+})
+$('.buttons').on('click', (event) => {
+    //console.log(event);
+    //console.log(event.target.id);
+    game.assignCharacter();
+    console.log(playerOne.selectedChar);
+    
 })

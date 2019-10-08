@@ -4,7 +4,13 @@ html {
 	background-size: cover;
 }
 h1 {
+	text-align: center;
 	font-family: 'Press Start 2P', cursive;
+	font-size: 40px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+
 }
 .forms {
 	display: flex;
@@ -20,15 +26,19 @@ h1 {
 .inputButtons {
     background-color: lightgrey;
     font-family: 'Press Start 2P', cursive;
+    margin: 3px;
+    padding: 6px;
 }
 
 .submit-button {
 	font-family: 'Press Start 2P', cursive;
 	background-color: black;
 	color: white;
+	margin: 3px;
+	padding: 6px;
 }
 
-.buttons {
+.attack-buttons {
 	font-family: 'Press Start 2P', cursive;
 color: rgb(255, 255, 255);
 font-size: 12px; 
@@ -42,32 +52,70 @@ display: inline-block;}
 .buttons:hover {
 background: red; }
 .buttons:active {
-background: grey; }
+background: grey;
+}
+
+.buttons {
+	font-family: 'Press Start 2P', cursive;
+color: rgb(255, 255, 255);
+font-size: 12px; 
+line-height: 12px; 
+padding: 6px; 
+border-radius: 50px; 
+background-color: black; 
+box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
+border: 2px solid grey;
+display: inline-block;
+text-align: center;
+}
+
+.buttons:hover {
+background: red; 
+}
+
+.buttons:active {
+background: grey; 
+}
 
 #devo {
 	height: 300px;
-	width: 500px;
+	width: 425px;
+	display: inline;	
 }
 #fayde {
 	height: 350px;
 	width: 350px;
+	display: inline;
 }
 #glac {
 	height: 250px;
 	width: 200px;
+	display: inline;
 }
 #pyro {
 	height: 350px;
 	width:350px;
+	display: inline;
 }
 #soul {
 	height: 400px;
 	width: 350px;
+	display: inline;
 }
 #swift {
 	height: 325px;
 	width: 300px;
+	display: inline;	
 }
+
+.charNames {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+}
+
 
 
 
