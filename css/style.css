@@ -40,13 +40,20 @@ h2 {
 
 #player2Name {
 	text-align: right;
+	margin-right: 150px;
 }
 
 #buttonsContainer {
-	width: 500px;
-	display: flex;
+	display: inline-block;
 	justify-content: space-between;
 }
+#buttonsContainer2 {
+	display: inline-block;
+	justify-content: space-between;
+	margin-left: 1100px;
+
+}
+
 .inputButtons {
     background-color: lightgrey;
     font-family: 'Press Start 2P', cursive;

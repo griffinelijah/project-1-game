@@ -10,8 +10,6 @@
 <body>
 	<h1>CHOOSE YOUR CHARACTER</h1>
 	<h2>Timer: </h2>
-	<div class="playerNames" id="player1Name">Player One is: </div>
-	<div class="playerNames" id="player2Name">Player Two is: </div>
 	<form class="forms" id="form1">
 		<input type="text" placeholder="Player One's Name" class="inputButtons" id="input-box">
 		<input type="submit" class="submit-button">
@@ -21,9 +19,13 @@
 		<input type="submit" class="submit-button">
 	</form>
 	<div id="buttonsContainer">
+	<div class="playerNames" id="player1Name">Player One is: </div>
 	<button class="attack-buttons" id="attack">Attack</button>
 		<button class="attack-buttons" id="ulti1">Ultimate</button>
 			<button class="attack-buttons" id="heal1">Heal1</button>
+	</div>
+	<div class="playerNames" id="player2Name">Player Two is: </div>
+	<div id="buttonsContainer2">
 	<button class="attack-buttons" id="attack2">Attack2</button>
 		<button  class="attack-buttons"id="ulti2">Ultimate2</button>
 			<button class="attack-buttons" id="heal2">Heal2</button>
@@ -41,7 +43,7 @@
 	<img class="charPics" id="glac" src="project-1-pics/glac.png">
 		<button class="buttons" id="glacSelect">Select</button>
 	<div class="charNames">Swiftblade</div>
-	<img class="charPics" d="swift" src="project-1-pics/swifty.png">
+	<img class="charPics" id="swift" src="project-1-pics/swifty.png">
 		<button class="buttons" id="swiftSelect">Select</button>
 	<div class="charNames">Soulstealer</div>
 	<img class="charPics" id="soul" src="project-1-pics/soulstealer.png">

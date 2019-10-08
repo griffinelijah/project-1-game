@@ -110,7 +110,15 @@ const playerTwo = {
 const game = {
     time: 30,
     char: null,
-
+    //this function holds all elements that will be hidden upon loading the game
+    hiddenElements(){
+        const $timerHide = $('h2')
+        $($timerHide).hide();
+        const $playerNames = $('.playerNames')
+        $($playerNames).hide();
+        const $attackButtons = $('.attack-buttons')
+        $($attackButtons).hide();
+    },
 
     //start will take input to name each character
     start1(name) {
@@ -176,7 +184,8 @@ const game = {
             clearInterval(interval);
         }
     },
-    chooseCharacter(){
+    chooseCharacter(){//add selected character to players selected character array
+        //this needs to be updated to implement seletion for both players
             if(event.target.id === 'pyroSelect'){
             playerOne.selectedChar.push(characters[0])
         }   else if(event.target.id === 'faydeSelect'){
@@ -189,8 +198,7 @@ const game = {
             playerOne.selectedChar.push(characters[4])
         }   else if(event.target.id === 'soulSelect')
             playerOne.selectedChar.push(characters[5])
-            const $buttons = $('.attack-buttons')
-            $($buttons).hide();
+            //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
             const $charNames = $('.charNames')
             $($charNames).hide();
             const $charPics = $('.charPics')
@@ -201,10 +209,16 @@ const game = {
             $($forms).hide();
             const $chooseH1 = $('h1')
             $chooseH1.hide();
-            $timerHide.show();
+            //The timer, input player names and attack buttons will be shown so that the players can begin battling
+            const $timerHide = $('h2')
+            const $playerNames = $('.playerNames')
+            const $attackButtons = $('.attack-buttons')
+            $($timerHide).show();
             $($playerNames).show();
-            $attackButtons.show();
+            $($attackButtons).show();
     }
+
+    
     // assignCharacter2(){
     //         if(event.target.id === 'pyroSelect'){
     //         playerTwo.selectedChar.push(characters[0])
@@ -222,17 +236,13 @@ const game = {
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
         
 }
-const $timerHide = $('h2')
- $($timerHide).hide();
-const $playerNames = $('.playerNames')
-$($playerNames).hide();
-const $attackButtons = $('.attack-buttons')
-$($attackButtons).hide();
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
 
 
 
+
+game.hiddenElements();
 $('#form1').on('submit', () => {
     event.preventDefault();
     game.start1(name);
@@ -270,7 +280,7 @@ $('#heal2').on('click', () => {
     game.heal2();
 })
 $('.buttons').on('click', (event) => {
-    //console.log(event);
+    console.log(event);
     //console.log(event.target.id);
     game.chooseCharacter();
     console.log('This is player one selection', playerOne.selectedChar);
