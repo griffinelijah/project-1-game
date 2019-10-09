@@ -110,11 +110,10 @@ const game = {
     basicAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
-        //this will be changed to to pull from the selectedChar array to choose character
         defendingPlayer.health -= attackingPlayer.attackValue;
         game.switchPlayer();
-        console.log(attackingPlayer.name, ' attacked for' + attackingPlayer.attackValue + ' damage!');
-        console.log(defendingPlayer.name, ' has ' + defendingPlayer.health + ' health remaining!');
+        const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
+        $('h3').append($attacking)
         this.gameOver();
     }, 
     ultimateAttack(attackingPlayerIndex) {
@@ -122,8 +121,10 @@ const game = {
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
         defendingPlayer.health -=  attackingPlayer.ultimateValue
         game.switchPlayer();
-        console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
-        console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
+        const $ultiAttacking = $('<div id="ultiAttacking"> '+attackingPlayer.name+' used an ultimate for '+attackingPlayer.ultimateValue+' damage!</div>')
+        $('h3').append($ultiAttacking)
+        //console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
+        //console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
         this.gameOver();
     }, 
     // }, //block function that allows player to take reduced damae from the following attack
@@ -205,7 +206,7 @@ const game = {
             this.isGameOver = true
             const $gameOver2 = $('<div id="gameOver2">Player One Wins!</div>')
             $('h3').append($gameOver2)
-            flashingColors();
+            //flashingColors();
         }
     }
 

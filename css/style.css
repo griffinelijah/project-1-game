@@ -110,6 +110,10 @@ h2 {
 	background: grey; 
 }
 
+.characters {
+	display: block;
+}
+
 #devo {
 	height: 300px;
 	width: 425px;
@@ -179,9 +183,21 @@ h2 {
 	-webkit-text-stroke-color: black
 }
 
-/*#gameOver {
-	text-align: center;
-}*/
+#attacking {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black
+}
+
+#ultiAttacking {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black
+}
 
 
 
