@@ -90,18 +90,18 @@ const game = {
     setTimer() {
         $timer = $('h2')
         const interval = setInterval(() => {
-            this.time -= 1
             $timer.text(`Timer: ${this.time}`);
-            if (game.endRound()) {
+            this.time--;
+            if(game.endRound()){
                 clearInterval(interval)
             }
+          
+        
         }, 1000)
     }, //basic attack for characteer 1
     basicAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
-        //console.log(attackingPlayer);
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
-        //console.log(defendingPlayer);
         //this will be changed to to pull from the selectedChar array to choose character
         defendingPlayer.health -= attackingPlayer.attackValue;
         game.switchPlayer();
@@ -127,8 +127,10 @@ const game = {
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time === 0) {
-            return true
-            clearInterval(interval);
+            return true;
+            alert('Round Over switch players')
+        }   else{
+            return false
         }
     },
     chooseCharacter(playerName, playerSelection){
@@ -207,11 +209,11 @@ $('.buttons').on('click', (event) => {
     const $playerOneName = $('#input-box').val();
     const playerOneSelection = event.target.id
     game.chooseCharacter($playerOneName, playerOneSelection);
-    
     game.switchPlayer();
     const $playerTwoName = $('#input-box2').val();
     const playerTwoSelection = event.target.id
     game.chooseCharacter($playerTwoName, playerTwoSelection);
+    game.setTimer();
     // this.player2 = new Player($playerTwoName, playerTwoSelection)
     // game.chooseCharacter(1)
     // console.log('This is player two selection', playerTwo.selectedChar);
