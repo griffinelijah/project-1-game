@@ -54,10 +54,10 @@ console.log(characters[0].attackValue);
 class Player {
 	constructor(humanName, char){
     	this.humanName = humanName,
-        this.char = characters.name,
-        this.health = characters.health,
-        this.attackValue = characters.attackValue,
-        this.ultimateValue = characters.ultimateValue
+        this.char = characters[char]
+        // this.health = characters.health,
+        // this.attackValue = characters.attackValue,
+        // this.ultimateValue = characters.ultimateValue
 	}
 }
 
@@ -172,18 +172,31 @@ const game = {
         // //add selected character to players selected character array
         //this needs to be updated to implement seletion for both players
 
-        if(event.target.id === 'pyroSelect'){
-            playerOne.push(characters[0])
-        }   else if(event.target.id === 'faydeSelect'){
-            playerOne.push(characters[1])
-        }   else if(event.target.id === 'devoSelect'){
-            playerOne.push(characters[2])
-        }   else if(event.target.id === 'glacSelect'){
-            playerOne.push(characters[3])
-        }   else if(event.target.id === 'swiftSelect'){
-            playerOne.push(characters[4])
-        }   else if(event.target.id === 'soulSelect')
-            playerOne.push(characters[5])
+        if(player1Selection === 'pyromancer'){
+            players[playerIndex].push(characters[0])
+        }   else if(player1Selection === 'fayde'){
+            players[playerIndex].push(characters[1])
+        }   else if(player1Selection === 'devourer'){
+            players[playerIndex].push(characters[2])
+        }   else if(player1Selection === 'glacius'){
+            players[playerIndex].push(characters[3])
+        }   else if(player1Selection === 'swiftblade'){
+            players[playerIndex].push(characters[4])
+        }   else if(player1Selection === 'soulstealer')
+            players[playerIndex].push(characters[5])
+
+            else if(player2Selection === 'pyromancer'){
+            players[playerIndex].push(characters[0])
+        }   else if(player2Selection === 'fayde'){
+            players[playerIndex].push(characters[1])
+        }   else if(player2Selection === 'devourer'){
+            players[playerIndex].push(characters[2])
+        }   else if(player2Selection === 'glacius'){
+            players[playerIndex].push(characters[3])
+        }   else if(player2Selection === 'swiftblade'){
+            players[playerIndex].push(characters[4])
+        }   else if(player2Selection === 'soulstealer')
+            players[playerIndex].push(characters[5])
             //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
             const $charNames = $('.charNames')
             $($charNames).hide();
@@ -232,16 +245,20 @@ const game = {
 
 $('#form1').on('submit', () => {
     event.preventDefault();
-
+    //instantiate each player class with the value of what is input into the forms
     const $playerOneName = $('#input-box').val();
-    this.player1 = new Player($playerOneName);
     const player1Selection = $('input[name="playerSelection"]:checked').val();
+    this.player1 = new Player($playerOneName, player1Selection);
+    //retrieve player selection from radio buttons and store value in variable
+    //const player1Selection = $('input[name="playerSelection"]:checked').val();
+
     console.log(player1Selection);
+    console.log(player1);
 
     const $playerTwoName = $('#input-box2').val();
-    this.player2 = new Player($playerTwoName);
     const player2Selection = $('input[name="playerSelection2"]:checked').val();
-    console.log(player2Selection);
+    this.player2 = new Player($playerTwoName, player2Selection);
+    console.log(player2);
     // console.log($playerOneName);
     // const player1 = new Player($playerOneName)
     //console.log(player1);
