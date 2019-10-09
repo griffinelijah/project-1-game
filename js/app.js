@@ -38,44 +38,27 @@ const characters = [{
         ultimateValue: Math.floor(Math.random() * (40 - 20) + 20)
     }
 ]
-console.log(characters[0].attackValue);
 
-// }
-// const playerOne = {
-//     name: "",
-//     selectedChar: [],
-// }
 
-// const playerTwo = {
-//     name: "",
-//     selectedChar: [],
-// }
 
 class Player {
 	constructor(humanName, char){
-    	this.humanName = humanName,
-        this.char = characters[char]
-        // this.health = characters.health,
-        // this.attackValue = characters.attackValue,
-        // this.ultimateValue = characters.ultimateValue
+    	this.humanName = humanName;
+        //this.char = characters[char]
+        this.name = characters[char].name;
+        this.health = characters[char].health;
+        this.attackValue = characters[char].attackValue;
+        this.ultimateValue = characters[char].ultimateValue;
 	}
 }
 
-// class PlayerTwo {
-// 	constructor(name){
-// 	this.name = name
-// 	//selectedChar = []
-
-// 	}
-
-// }
 
 //game object will hold all functions for operation the game
 const game = {
     time: 30,
     char: null,
     players: [null, null],
-    activePlayerIndex: 0,
+    activePlayerIndex: 0,  // 0 or 1
 
     
     //this function holds all elements that will be hidden upon loading the game
@@ -91,17 +74,19 @@ const game = {
     //start will take input to name each character
     start(player1, player2) {
         player1 = this.players[0]
-        // console.log(player1);
+        //console.log(player1);
         player2 = this.players[1]
         // console.log(player2);
         //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer instead of using prompt
     },
-    // start2(name) {
-    //     const $playerTwo = $('#input-box2').val();
-    //     $('#player2Name').append($playerTwo)
-    //     //   //Eventually thhis will be used to implemenet a 'loading screen' to display player names and selected characteer
-    //},
-    //the set stats function will control the damage ranges and ultimate ability timing of each characteer
+
+    switchPlayer() {
+        if(this.activePlayerIndex === 0){
+            this.activePlayerIndex = 1
+        } else {
+            this.activePlayerIndex = 0
+        }
+    },
     setTimer() {
         $timer = $('h2')
         const interval = setInterval(() => {
@@ -121,39 +106,24 @@ const game = {
         defendingPlayer.health -= attackingPlayer.attackValue;
         console.log(attackingPlayer.name, ' attacked for' + attackingPlayer.attackValue + ' damage!');
         console.log(defendingPlayer.name, ' has ' + defendingPlayer.health + ' health remaining!');
-    }, //basic attack for character 2
-    // basicAttack2() {
-    //     playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].attackValue;
-    //     console.log('Char 2 attacked with ', playerTwo.selectedChar[0].attackValue + ' damage');
-    //     console.log('Char 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
-    // }, //ultimate ability for character 1
+    }, 
     ultimateAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
         defendingPlayer.health -=  attackingPlayer.ultimateValue
         console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
         console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
-    }, //ultimate ability for character 2
-    // ultimateAttack2() {
-    //     playerOne.selectedChar[0].health -= playerTwo.selectedChar[0].ultimateValue;
-    //     console.log('Char 2 used his ultimate for ', playerTwo.selectedChar[0].health + ' damage');
-    //     console.log('Chat 1 has ', playerOne.selectedChar[0].health + ' health remaining!');
+    }, 
     // }, //block function that allows player to take reduced damae from the following attack
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
-    heal(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
-        const firstPlayer = this.players[playerIndex]
-        const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
-        firstPlayer.health += 10;
-        secondPlayer.healyth += 10;
-        console.log(playerIndex + playerIndex.health + ' health remaining!');
-    },
-    // heal2() { //heals character two by 10 health
-    //     if (playerTwo.selectedChar[0] <= 100) {
-    //         playerTwo.selectedChar[0] += 10
-    //     }
-    //     console.log('Char 2 used a heal ', playerTwo.selectedChar[0] + ' health remaining!');
+    // heal(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
+    //     const firstPlayer = this.players[playerIndex]
+    //     const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
+    //     firstPlayer.health += 10;
+    //     secondPlayer.healyth += 10;
+    //     console.log(playerIndex + playerIndex.health + ' health remaining!');
     // },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time === 0) {
@@ -161,123 +131,54 @@ const game = {
             clearInterval(interval);
         }
     },
-    chooseCharacter(playerIndex){
-        // const currentPlayerIndex = this.players[playerIndex]
-        // console.log(playerOne);
-        // // pass a player, not an event
-        // // this.players[0]
-        // // call this method again at some point for this.players[1]
-        // console.log("hey, here's event in chooseCharacter1");
-        // console.log(event.target.id);
-        // //add selected character to players selected character array
+    chooseCharacter(playerName, playerSelection){
+
         //this needs to be updated to implement seletion for both players
 
-        if(player1Selection === 'pyromancer'){
-            players[playerIndex].push(characters[0])
-        }   else if(player1Selection === 'fayde'){
-            players[playerIndex].push(characters[1])
-        }   else if(player1Selection === 'devourer'){
-            players[playerIndex].push(characters[2])
-        }   else if(player1Selection === 'glacius'){
-            players[playerIndex].push(characters[3])
-        }   else if(player1Selection === 'swiftblade'){
-            players[playerIndex].push(characters[4])
-        }   else if(player1Selection === 'soulstealer')
-            players[playerIndex].push(characters[5])
+        //instantiate player here to hold vbalues pulled from character selectiono
+        //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
+        //The timer, input player names and attack buttons will be shown so that the players can begin battling
 
-            else if(player2Selection === 'pyromancer'){
-            players[playerIndex].push(characters[0])
-        }   else if(player2Selection === 'fayde'){
-            players[playerIndex].push(characters[1])
-        }   else if(player2Selection === 'devourer'){
-            players[playerIndex].push(characters[2])
-        }   else if(player2Selection === 'glacius'){
-            players[playerIndex].push(characters[3])
-        }   else if(player2Selection === 'swiftblade'){
-            players[playerIndex].push(characters[4])
-        }   else if(player2Selection === 'soulstealer')
-            players[playerIndex].push(characters[5])
-            //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
+        this.players[this.activePlayerIndex] = new Player(playerName, playerSelection);
+        game.switchPlayer();
+
+
+        
+
+        // if both players have chosen 
+            // hide stuff (move on in game)
+        
             const $charNames = $('.charNames')
-            $($charNames).hide();
             const $charPics = $('.charPics')
-            $($charPics).hide();
             const $selectors = $('.buttons')
-            $($selectors).hide();
             const $forms  = $('.forms')
-            $($forms).hide();
             const $chooseH1 = $('h1')
-            $chooseH1.hide();
-            //The timer, input player names and attack buttons will be shown so that the players can begin battling
             const $timerHide = $('h2')
             const $playerNames = $('.playerNames')
             const $attackButtons = $('.attack-buttons')
             $($timerHide).show();
             $($playerNames).show();
             $($attackButtons).show();
+            // $($charNames).hide();
+            // $($charPics).hide();
+            // $($selectors).hide();
+            // $($forms).hide();
+            // $chooseH1.hide();
     },
 
-    
-    // assignCharacter2(){
-    //         if(event.target.id === 'pyroSelect'){
-    //         playerTwo.selectedChar.push(characters[0])
-    //     }   else if(event.target.id === 'faydeSelect'){
-    //         playerTwo.selectedChar.push(characters[1])
-    //     }   else if(event.target.id === 'devoSelect'){
-    //         playerTwo.selectedChar.push(characters[2])
-    //     }   else if(event.target.id === 'glacSelect'){
-    //         playerTwo.selectedChar.push(characters[3])
-    //     }   else if(event.target.id === 'swiftSelect'){
-    //         playerTwo.selectedChar.push(characters[4])
-    //     }   else if(event.target.id === 'soulSelect')
-    //         playerTwo.selectedChar.push(characters[5])
-    // },
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
 
 }
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
 
-
-//radio buttons with seperate lists for each palyewr to input name and select character under one form thaht will submit all information at one time
-
  game.hiddenElements();
 
 $('#form1').on('submit', () => {
     event.preventDefault();
-    //instantiate each player class with the value of what is input into the forms
-    const $playerOneName = $('#input-box').val();
-    const player1Selection = $('input[name="playerSelection"]:checked').val();
-    this.player1 = new Player($playerOneName, player1Selection);
-    //retrieve player selection from radio buttons and store value in variable
-    //const player1Selection = $('input[name="playerSelection"]:checked').val();
 
-    console.log(player1Selection);
-    console.log(player1);
 
-    const $playerTwoName = $('#input-box2').val();
-    const player2Selection = $('input[name="playerSelection2"]:checked').val();
-    this.player2 = new Player($playerTwoName, player2Selection);
-    console.log(player2);
-    // console.log($playerOneName);
-    // const player1 = new Player($playerOneName)
-    //console.log(player1);
-    // console.log($playerTwoName);
-    // const player2 = new Player($playerTwoName)
-    //game.chooseCharacter1();
-    // get the value from input-box (aka player1 name)
-    // get the value from input-box2 (aka player2 name)
 })
-// $('#form2').on('submit', () => {
-//     event.preventDefault();
-//     const $playerTwoName = $('#input-box2').val();
-//     this.player2 = new Player($playerTwoName);
-//     console.log(player2);
-//     // game.start(name);
-//     game.start(player1, player2)
-//     game.setTimer();
-
-// })
 $('#attack').on('click', () => {
     game.basicAttack(0);
 
@@ -302,10 +203,18 @@ $('#heal1').on('click', () => {
 $('#heal2').on('click', () => {
     game.heal1(1);
 })
-// $('.buttons').on('click', (event) => {
-//     console.log(event.target);
-//     game.chooseCharacter(0);
-//     // console.log('This is player two selection', playerTwo.selectedChar);
+$('.buttons').on('click', (event) => {
+    const $playerOneName = $('#input-box').val();
+    const playerOneSelection = event.target.id
+    game.chooseCharacter($playerOneName, playerOneSelection);
+    
+    game.switchPlayer();
+    const $playerTwoName = $('#input-box2').val();
+    const playerTwoSelection = event.target.id
+    game.chooseCharacter($playerTwoName, playerTwoSelection);
+    // this.player2 = new Player($playerTwoName, playerTwoSelection)
+    // game.chooseCharacter(1)
+    // console.log('This is player two selection', playerTwo.selectedChar);
 
-// })  
+})  
 
