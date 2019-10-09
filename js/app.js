@@ -142,13 +142,13 @@ const game = {
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
-    // heal(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
-    //     const firstPlayer = this.players[playerIndex]
-    //     const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
-    //     firstPlayer.health += 10;
-    //     secondPlayer.healyth += 10;
-    //     console.log(playerIndex + playerIndex.health + ' health remaining!');
-    // },
+    heal(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
+        const firstPlayer = this.players[playerIndex]
+        const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
+        firstPlayer.health += 10;
+        secondPlayer.healyth += 10;
+        console.log(playerIndex + playerIndex.health + ' health remaining!');
+    },
     // heal2() { //heals character two by 10 health
     //     if (playerTwo.selectedChar[0] <= 100) {
     //         playerTwo.selectedChar[0] += 10
@@ -161,47 +161,48 @@ const game = {
             clearInterval(interval);
         }
     },
-    // chooseCharacter(playerIndex){
-    //     const playerOne = this.players[0]
-    //     console.log(playerOne)
-    //     // pass a player, not an event
-    //     // this.players[0]
-    //     // call this method again at some point for this.players[1]
-    //     console.log("hey, here's event in chooseCharacter1");
-    //     console.log(event.target.id);
-    //     //add selected character to players selected character array
-    //     //this needs to be updated to implement seletion for both players
-    //     if(event.target.id === 'pyroSelect'){
-    //         playerOne.push(characters[0])
-    //     }   else if(event.target.id === 'faydeSelect'){
-    //         playerOne.push(characters[1])
-    //     }   else if(event.target.id === 'devoSelect'){
-    //         playerOne.push(characters[2])
-    //     }   else if(event.target.id === 'glacSelect'){
-    //         playerOne.push(characters[3])
-    //     }   else if(event.target.id === 'swiftSelect'){
-    //         playerOne.push(characters[4])
-    //     }   else if(event.target.id === 'soulSelect')
-    //         playerOne.push(characters[5])
-    //         //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
-    //         const $charNames = $('.charNames')
-    //         $($charNames).hide();
-    //         const $charPics = $('.charPics')
-    //         $($charPics).hide();
-    //         const $selectors = $('.buttons')
-    //         $($selectors).hide();
-    //         const $forms  = $('.forms')
-    //         $($forms).hide();
-    //         const $chooseH1 = $('h1')
-    //         $chooseH1.hide();
-    //         //The timer, input player names and attack buttons will be shown so that the players can begin battling
-    //         const $timerHide = $('h2')
-    //         const $playerNames = $('.playerNames')
-    //         const $attackButtons = $('.attack-buttons')
-    //         $($timerHide).show();
-    //         $($playerNames).show();
-    //         $($attackButtons).show();
-    // },
+    chooseCharacter(playerIndex){
+        // const currentPlayerIndex = this.players[playerIndex]
+        // console.log(playerOne);
+        // // pass a player, not an event
+        // // this.players[0]
+        // // call this method again at some point for this.players[1]
+        // console.log("hey, here's event in chooseCharacter1");
+        // console.log(event.target.id);
+        // //add selected character to players selected character array
+        //this needs to be updated to implement seletion for both players
+
+        if(event.target.id === 'pyroSelect'){
+            playerOne.push(characters[0])
+        }   else if(event.target.id === 'faydeSelect'){
+            playerOne.push(characters[1])
+        }   else if(event.target.id === 'devoSelect'){
+            playerOne.push(characters[2])
+        }   else if(event.target.id === 'glacSelect'){
+            playerOne.push(characters[3])
+        }   else if(event.target.id === 'swiftSelect'){
+            playerOne.push(characters[4])
+        }   else if(event.target.id === 'soulSelect')
+            playerOne.push(characters[5])
+            //on chharacter selection the character names, pictures, select buttons and the header will be hidden and transition into the battle screen
+            const $charNames = $('.charNames')
+            $($charNames).hide();
+            const $charPics = $('.charPics')
+            $($charPics).hide();
+            const $selectors = $('.buttons')
+            $($selectors).hide();
+            const $forms  = $('.forms')
+            $($forms).hide();
+            const $chooseH1 = $('h1')
+            $chooseH1.hide();
+            //The timer, input player names and attack buttons will be shown so that the players can begin battling
+            const $timerHide = $('h2')
+            const $playerNames = $('.playerNames')
+            const $attackButtons = $('.attack-buttons')
+            $($timerHide).show();
+            $($playerNames).show();
+            $($attackButtons).show();
+    },
 
     
     // assignCharacter2(){
@@ -225,33 +226,41 @@ const game = {
 //if you isBlocking = true then half damage taken from incoming attack
 
 
+//radio buttons with seperate lists for each palyewr to input name and select character under one form thaht will submit all information at one time
 
+ game.hiddenElements();
 
-game.hiddenElements();
 $('#form1').on('submit', () => {
     event.preventDefault();
 
     const $playerOneName = $('#input-box').val();
     this.player1 = new Player($playerOneName);
+    const player1Selection = $('input[name="playerSelection"]:checked').val();
+    console.log(player1Selection);
+
+    const $playerTwoName = $('#input-box2').val();
+    this.player2 = new Player($playerTwoName);
+    const player2Selection = $('input[name="playerSelection2"]:checked').val();
+    console.log(player2Selection);
     // console.log($playerOneName);
     // const player1 = new Player($playerOneName)
-    console.log(player1);
+    //console.log(player1);
     // console.log($playerTwoName);
     // const player2 = new Player($playerTwoName)
     //game.chooseCharacter1();
     // get the value from input-box (aka player1 name)
     // get the value from input-box2 (aka player2 name)
 })
-$('#form2').on('submit', () => {
-    event.preventDefault();
-    const $playerTwoName = $('#input-box2').val();
-    this.player2 = new Player($playerTwoName);
-    console.log(player2);
-    // game.start(name);
-    game.start(player1, player2)
-    game.setTimer();
+// $('#form2').on('submit', () => {
+//     event.preventDefault();
+//     const $playerTwoName = $('#input-box2').val();
+//     this.player2 = new Player($playerTwoName);
+//     console.log(player2);
+//     // game.start(name);
+//     game.start(player1, player2)
+//     game.setTimer();
 
-})
+// })
 $('#attack').on('click', () => {
     game.basicAttack(0);
 
@@ -276,10 +285,10 @@ $('#heal1').on('click', () => {
 $('#heal2').on('click', () => {
     game.heal1(1);
 })
-$('.buttons').on('click', (event) => {
-    console.log(event.target);
-    game.chooseCharacter(0);
-    // console.log('This is player two selection', playerTwo.selectedChar);
+// $('.buttons').on('click', (event) => {
+//     console.log(event.target);
+//     game.chooseCharacter(0);
+//     // console.log('This is player two selection', playerTwo.selectedChar);
 
-})  
+// })  
 
