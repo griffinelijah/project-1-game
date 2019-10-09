@@ -104,6 +104,7 @@ const game = {
         //console.log(defendingPlayer);
         //this will be changed to to pull from the selectedChar array to choose character
         defendingPlayer.health -= attackingPlayer.attackValue;
+        game.switchPlayer();
         console.log(attackingPlayer.name, ' attacked for' + attackingPlayer.attackValue + ' damage!');
         console.log(defendingPlayer.name, ' has ' + defendingPlayer.health + ' health remaining!');
     }, 
@@ -111,6 +112,7 @@ const game = {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
         defendingPlayer.health -=  attackingPlayer.ultimateValue
+        game.switchPlayer();
         console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
         console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
     }, 
@@ -118,13 +120,11 @@ const game = {
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
-    // heal(playerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past maximum health pool
-    //     const firstPlayer = this.players[playerIndex]
-    //     const secondPlayer = this.players[playerIndex === 0 ? 1 : 0]
-    //     firstPlayer.health += 10;
-    //     secondPlayer.healyth += 10;
-    //     console.log(playerIndex + playerIndex.health + ' health remaining!');
-    // },
+    heal(healingPlayerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past `maximum health pool
+        const healingPlayer = this.players[healingPlayerIndex]
+        healingPlayer.health += 10
+        console.log(healingPlayer + healingPlayer.health + ' health remaining!');
+    },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time === 0) {
             return true
@@ -197,11 +197,11 @@ $('#ulti2').on('click', () => {
 })
 
 $('#heal1').on('click', () => {
-    game.heal1(0);
+    game.heal(0);
 })
 
 $('#heal2').on('click', () => {
-    game.heal1(1);
+    game.heal(1);
 })
 $('.buttons').on('click', (event) => {
     const $playerOneName = $('#input-box').val();
