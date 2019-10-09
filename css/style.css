@@ -199,6 +199,14 @@ h2 {
 	-webkit-text-stroke-color: black
 }
 
+#healingPlayer {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black
+}
+
 
 
 

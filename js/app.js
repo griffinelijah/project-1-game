@@ -123,8 +123,6 @@ const game = {
         game.switchPlayer();
         const $ultiAttacking = $('<div id="ultiAttacking"> '+attackingPlayer.name+' used an ultimate for '+attackingPlayer.ultimateValue+' damage!</div>')
         $('h3').append($ultiAttacking)
-        //console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
-        //console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
         this.gameOver();
     }, 
     // }, //block function that allows player to take reduced damae from the following attack
@@ -133,7 +131,13 @@ const game = {
     // }
     heal(healingPlayerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past `maximum health pool
         const healingPlayer = this.players[healingPlayerIndex]
+        if(healingPlayer.health < this.players[healingPlayerIndex].health){
         healingPlayer.health += 10
+    } else{
+        console.log('you are at max health');
+    }
+        const $healingPlayer = $('<div id="healingPlayer"> '+healingPlayer.name+' healed for 10 health, they have '+healingPlayer.health+' remaining!</div>')
+        $('h3').append($healingPlayer)
         console.log(healingPlayer + healingPlayer.health + ' health remaining!');
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
