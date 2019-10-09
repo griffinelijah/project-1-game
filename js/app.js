@@ -126,7 +126,7 @@ const game = {
         console.log(healingPlayer + healingPlayer.health + ' health remaining!');
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
-        if (this.time === 0) {
+        if (this.time < 0) {
             return true;
             alert('Round Over switch players')
         }   else{
@@ -144,33 +144,43 @@ const game = {
         this.players[this.activePlayerIndex] = new Player(playerName, playerSelection);
         game.switchPlayer();
 
+        // if(this.players[1] != null);{
+        //     return true
 
         
 
         // if both players have chosen 
             // hide stuff (move on in game)
         
-            const $charNames = $('.charNames')
-            const $charPics = $('.charPics')
-            const $selectors = $('.buttons')
-            const $forms  = $('.forms')
-            const $chooseH1 = $('h1')
-            const $timerHide = $('h2')
-            const $playerNames = $('.playerNames')
-            const $attackButtons = $('.attack-buttons')
-            $($timerHide).show();
-            $($playerNames).show();
-            $($attackButtons).show();
+            // const $charNames = $('.charNames')
+            // const $charPics = $('.charPics')
+            // const $selectors = $('.buttons')
+            // const $forms  = $('.forms')
+            // const $chooseH1 = $('h1')
+            // const $timerHide = $('h2')
+            // const $playerNames = $('.playerNames')
+            // const $attackButtons = $('.attack-buttons')
+            // //const $playerOneChar = $('#playOneChar')
+            // $($timerHide).show();
+            // $($playerNames).show();
+            // $($attackButtons).show();
             // $($charNames).hide();
             // $($charPics).hide();
             // $($selectors).hide();
             // $($forms).hide();
             // $chooseH1.hide();
-    },
+        }
+
+    }
+    // showElements(){
+    //     const $playerOnePic = $('<img class="playOnePic" src="project-1-pics/pyro.png"></img>').appendTo('#playOneChar')
+    //     game.switchPlayer();
+    //     const $playerTwoPic = $('<img class="playTwoPics" src="project-1-pics/fayde.png"></img>').appendTo('#playTwoChar')
+    // }
 
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
 
-}
+//}
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
 
@@ -213,6 +223,7 @@ $('.buttons').on('click', (event) => {
     const $playerTwoName = $('#input-box2').val();
     const playerTwoSelection = event.target.id
     game.chooseCharacter($playerTwoName, playerTwoSelection);
+  //  game.showElements();
     game.setTimer();
     // this.player2 = new Player($playerTwoName, playerTwoSelection)
     // game.chooseCharacter(1)
