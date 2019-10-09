@@ -71,41 +71,43 @@ h2 {
 
 .attack-buttons {
 	font-family: 'Press Start 2P', cursive;
-color: rgb(255, 255, 255);
-font-size: 12px; 
-line-height: 12px; 
-padding: 6px; 
-border-radius: 50px; 
-background-color: black; 
-box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
-border: 2px solid grey 
-display: inline-block;}
-.buttons:hover {
-background: red; }
-.buttons:active {
-background: grey;
+	color: rgb(255, 255, 255);
+	font-size: 12px; 
+	line-height: 12px; 
+	padding: 6px; 
+	border-radius: 50px; 
+	background-color: black; 
+	box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
+	border: 2px solid grey;
+	display: inline-block;
+}
+.attack-buttons:hover {
+	background: red; 
+}
+.attack-buttons:active {
+	background: grey;
 }
 
 .buttons {
 	font-family: 'Press Start 2P', cursive;
-color: rgb(255, 255, 255);
-font-size: 12px; 
-line-height: 12px; 
-padding: 6px; 
-border-radius: 50px; 
-background-color: black; 
-box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
-border: 2px solid grey;
-display: inline-block;
-text-align: center;
+	color: rgb(255, 255, 255);
+	font-size: 12px; 
+	line-height: 12px; 
+	padding: 6px; 
+	border-radius: 50px; 
+	background-color: black; 
+	box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; 
+	border: 2px solid grey;
+	display: inline-block;
+	text-align: center;
 }
 
 .buttons:hover {
-background: red; 
+	background: red; 
 }
 
 .buttons:active {
-background: grey; 
+	background: grey; 
 }
 
 #devo {
@@ -149,6 +151,16 @@ background: grey;
 
 .radio {
 	display: inline;
+}
+
+.playOnePic {
+	height: 350px;
+	width: 350px;
+}
+
+.playTwoPic {
+	height: 350px;
+	width: 350px;
 }
 
 

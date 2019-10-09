@@ -5,42 +5,48 @@ const characters = [{
         name: 'pyromancer',
         health: 100,
         attackValue: Math.floor(Math.random() * (12 - 7)) + 7,
-        ultimateValue: Math.floor(Math.random() * (35 - 25)) + 25
+        ultimateValue: Math.floor(Math.random() * (35 - 25)) + 25,
+        image: 'project-1-pics/pyro.png'
     },
     {
         name: 'fayde',
         health: 125,
         attackValue: Math.floor(Math.random() * (10 - 5)) + 5,
-        ultimateValue: Math.floor(Math.random() * (30 - 20)) + 20
+        ultimateValue: Math.floor(Math.random() * (30 - 20)) + 20,
+        image: 'project-1-pics/fayde.png'
     },
     {
         name: 'devourer',
         health: 150,
         attackValue: Math.floor(Math.random() * (15 - 8)) + 8,
-        ultimateValue: Math.floor(Math.random() * (30 - 12)) + 12
+        ultimateValue: Math.floor(Math.random() * (30 - 12)) + 12,
+        image: 'project-1-pics/devo.png'
     },
     {
         name: 'glacius',
         health: 100,
         attackValue: Math.floor(Math.random() * (10 - 8)) + 8,
-        ultimateValue: Math.floor(Math.random() * (40 - 30)) + 30
+        ultimateValue: Math.floor(Math.random() * (40 - 30)) + 30,
+        image: 'project-1-pics/glac.png'
     },
     {
         name: 'swiftblade',
         health: 100,
         attackValue: Math.floor(Math.random() * (18 - 12) + 12),
-        ultimateValue: Math.floor(Math.random() * (40 - 30) + 30)
+        ultimateValue: Math.floor(Math.random() * (40 - 30) + 30),
+        image: 'project-1-pics/swifty.png'
     },
     {
         name: 'soulstealer',
         health: 100,
         attackValue: Math.floor(Math.random() * (20 - 18) + 18),
-        ultimateValue: Math.floor(Math.random() * (40 - 20) + 20)
+        ultimateValue: Math.floor(Math.random() * (40 - 20) + 20),
+        image: 'project-1-pics/soulstealer.png'
     }
 ]
 
 
-
+console.log(characters[0]);
 class Player {
 	constructor(humanName, char){
     	this.humanName = humanName;
@@ -49,6 +55,7 @@ class Player {
         this.health = characters[char].health;
         this.attackValue = characters[char].attackValue;
         this.ultimateValue = characters[char].ultimateValue;
+        this.image = characters[char].image
 	}
 }
 
@@ -126,7 +133,7 @@ const game = {
         console.log(healingPlayer + healingPlayer.health + ' health remaining!');
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
-        if (this.time < 0) {
+        if (this.time < 1) {
             return true;
             alert('Round Over switch players')
         }   else{
@@ -154,28 +161,27 @@ const game = {
     showBattlefield(){
         if(this.players[1] != null){
             // return false
-
-        
-        const $playerOnePic = $('<img class="playOnePic" src="project-1-pics/pyro.png"></img>').appendTo('#playOneChar')
-        game.switchPlayer();
-        const $playerTwoPic = $('<img class="playTwoPics" src="project-1-pics/fayde.png"></img>').appendTo('#playTwoChar')
-        const $charNames = $('.charNames')
-        const $charPics = $('.charPics')
-        const $selectors = $('.buttons')
-        const $forms  = $('.forms')
-        const $chooseH1 = $('h1')
-        const $timerHide = $('h2')
-        const $playerNames = $('.playerNames')
-        const $attackButtons = $('.attack-buttons')
-        $($timerHide).show();
-        $($playerNames).show();
-        $($attackButtons).show();
-        $($charNames).hide();
-        $($charPics).hide();
-        $($selectors).hide();
-        $($forms).hide();
-        $chooseH1.hide();
-    }
+            
+            const $playerOnePic = $('<img class="playOnePic" src="'+this.players[0].image+'"></img>').appendTo('#playOneChar')
+            game.switchPlayer();
+            const $playerTwoPic = $('<img class="playTwoPic" src="'+this.players[1].image+'"></img>').appendTo('#playTwoChar')
+            const $charNames = $('.charNames')
+            const $charPics = $('.charPics')
+            const $selectors = $('.buttons')
+            const $forms  = $('.forms')
+            const $chooseH1 = $('h1')
+            const $timerHide = $('h2')
+            const $playerNames = $('.playerNames')
+            const $attackButtons = $('.attack-buttons')
+            $($timerHide).show();
+            $($playerNames).show();
+            $($attackButtons).show();
+            $($charNames).hide();
+            $($charPics).hide();
+            $($selectors).hide();
+            $($forms).hide();
+            $chooseH1.hide();
+        }
     }
 
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
