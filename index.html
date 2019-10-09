@@ -10,16 +10,19 @@
 <body>
 	<h1>CHOOSE YOUR CHARACTER</h1>
 	<h2>Timer: </h2>
+	<h3 id="gameOver"></h3>
 	<form class="forms" id="form1">
 		<input type="text" placeholder="Player One's Name" class="inputButtons" id="input-box">
 
 		<input type="text" placeholder="Player Two's Name" class="inputButtons" id="input-box2">
 
 	</form>
+
 	
 		<div id="buttonsContainer">
 		<div class="playerNames" id="player1Name">Player One is: </div>
-		<div id="playOneChar">This will player ones selected character</div>
+		<div id="playOneChar"></div>
+
 		<button class="attack-buttons" id="attack">Attack</button>
 			<button class="attack-buttons" id="ulti1">Ultimate</button>
 			<button class="attack-buttons" id="heal1">Heal1</button>
@@ -27,7 +30,6 @@
 		<div id="buttonsContainer2">
 		<div class="playerNames" id="player2Name">Player Two is: </div>
 		<div id="playTwoChar"></div>
-		<div id="playOneChar"></div>
 		<button class="attack-buttons" id="attack2">Attack2</button>
 			<button  class="attack-buttons"id="ulti2">Ultimate2</button>
 				<button class="attack-buttons" id="heal2">Heal2</button>

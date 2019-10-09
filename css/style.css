@@ -163,6 +163,27 @@ h2 {
 	width: 350px;
 }
 
+#gameOver {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black
+}
+
+#gameOver2 {
+	font-family: 'Press Start 2P', cursive;
+	font-size: 22px;
+	color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black
+}
+
+/*#gameOver {
+	text-align: center;
+}*/
+
+
 
 
 

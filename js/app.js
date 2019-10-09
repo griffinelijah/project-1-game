@@ -66,6 +66,7 @@ const game = {
     char: null,
     players: [null, null],
     activePlayerIndex: 0,  // 0 or 1
+    isGameOver: false,
 
     
     //this function holds all elements that will be hidden upon loading the game
@@ -114,6 +115,7 @@ const game = {
         game.switchPlayer();
         console.log(attackingPlayer.name, ' attacked for' + attackingPlayer.attackValue + ' damage!');
         console.log(defendingPlayer.name, ' has ' + defendingPlayer.health + ' health remaining!');
+        this.gameOver();
     }, 
     ultimateAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
@@ -122,6 +124,7 @@ const game = {
         game.switchPlayer();
         console.log(attackingPlayer.name, ' used his ultimate for ', attackingPlayer.ultimateValue + ' damage');
         console.log(defendingPlayer.name, ' has ' +  defendingPlayer.health + ' health remaining!');
+        this.gameOver();
     }, 
     // }, //block function that allows player to take reduced damae from the following attack
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
@@ -182,7 +185,40 @@ const game = {
             $($forms).hide();
             $chooseH1.hide();
         }
+    },
+
+    //  flashingColors(){
+    //     let text = $('#gameOver').css('color', black)
+    //     let colorChange = setInterval(flash, 1000)
+    // },
+
+
+    gameOver() {
+        //console.log(this.players)
+        if(this.players[0].health <= 0) {
+            this.isGameOver = true
+            const $gameOver = $('<div id="gameOver">Player Two Wins!</div>')
+            $('h3').append($gameOver);
+            $gameOver.text
+            //alert('game over, player two wins');
+        } else if(this.players[1].health <= 0){
+            this.isGameOver = true
+            const $gameOver2 = $('<div id="gameOver2">Player One Wins!</div>')
+            $('h3').append($gameOver2)
+            flashingColors();
+        }
     }
+
+
+
+    // gameOver(){
+    //     if(this.players[0].health <= 0) { 
+    //         alert('game over, player two wins');
+    //     } else(this.players[1].health <= 0) {
+    //         alert('game over, player on wins');
+
+        
+    // // }
 
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
 
@@ -190,7 +226,7 @@ const game = {
 //property to check if player is blocking before every attack stage
 //if you isBlocking = true then half damage taken from incoming attack
 
- game.hiddenElements();
+game.hiddenElements();
 
 $('#form1').on('submit', () => {
     event.preventDefault();
