@@ -117,9 +117,14 @@ const game = {
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
 
         //const $progressValue = $('#p1health').attr('value')
-        const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
+        if(attackingPlayerIndex === 0){
+            const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
+            $progressValue = $('#p2health').attr('value', $healthValue)
+        } else if(attackingPlayerIndex === 1){
+            const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
         $progressValue = $('#p1health').attr('value', $healthValue)
-        console.log($progressValue);
+        }
+        // console.log($progressValue);
         //console.log($healthValue);
         // defendingPlayer.health -= attackingPlayer.attackValue;
         
