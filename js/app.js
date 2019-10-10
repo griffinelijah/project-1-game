@@ -112,7 +112,9 @@ const game = {
         game.switchPlayer();
         const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
         $('h3').append($attacking)
+        $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
         this.gameOver();
+        //this.hideDialog();
     }, 
     ultimateAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
@@ -121,7 +123,9 @@ const game = {
         game.switchPlayer();
         const $ultiAttacking = $('<div id="ultiAttacking"> '+attackingPlayer.name+' used an ultimate for '+attackingPlayer.ultimateValue+' damage!</div>')
         $('h3').append($ultiAttacking)
+        $("h3").empty().show().html($ultiAttacking).delay(1000).fadeOut(500)
         this.gameOver();
+        //this.hideDialog();
     }, 
     // }, //block function that allows player to take reduced damae from the following attack
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
@@ -137,6 +141,8 @@ const game = {
     }
         const $healingPlayer = $('<div id="healingPlayer"> '+healingPlayer.name+' healed for 10 health, they have '+healingPlayer.health+' remaining!</div>')
         $('h3').append($healingPlayer)
+        $("h3").empty().show().html($healingPlayer).delay(1000).fadeOut(500)
+        //this.hideDialog();
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time < 1) {
@@ -188,7 +194,12 @@ const game = {
             $($forms).hide();
             $chooseH1.hide();
         }
-    },
+    },//this function will be ran to hide dialog messages after five seeconds so pag is not cluttered during battle
+    // hideDialog() { 
+    //             $("h3").empty().show().html().delay(1000).fadeOut(500)
+                
+    //             // $('#GFG_DOWN').text("Div hides after 1 second.");      
+    //         }, 
 
     //  flashingColors(){
     //     let text = $('#gameOver').css('color', black)
