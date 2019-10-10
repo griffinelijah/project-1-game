@@ -219,10 +219,6 @@ h2 {
 	-webkit-text-stroke-color: black;
 }
 
-.radio {
-	display: inline;
-}
-
 .playOnePic {
 	height: 45%;
 	width: 45%;
@@ -243,14 +239,16 @@ h2 {
 	line-height: 150%;
 }
 
-/*#gameOver2 {
+h4{
 	font-family: 'Press Start 2P', cursive;
-	font-size: 22px;
+	font-size: 40px;
 	color: white;
 	-webkit-text-stroke-width: 1px;
-	-webkit-text-stroke-color: black
+	-webkit-text-stroke-color: black;
+	text-align: center;
+	line-height: 150%;
 }
-*/
+
 #attacking {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 22px;
@@ -286,5 +284,4 @@ h2 {
 	width: 200px;
 	border: 2px solid black;
 }
-
 

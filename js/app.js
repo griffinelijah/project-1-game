@@ -63,7 +63,7 @@ class Player {
 
 //game object will hold all functions for operation the game
 const game = {
-    time: 30,
+    time: 15,
     char: null,
     players: [null, null],
     activePlayerIndex: 0,  // 0 or 1
@@ -105,10 +105,12 @@ const game = {
         const interval = setInterval(() => {
             $timer.text(`Timer: ${this.time}`);
             this.time--;
-            if(game.endRound()){
+            if(this.endRound()) {
                 clearInterval(interval)
             }
-          
+            if(this.gameOver()) {
+                clearInterval(interval)
+            }
         
         }, 1000)
     }, //basic attack for characteer 1
@@ -126,7 +128,6 @@ const game = {
         const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
-        
         game.switchPlayer();
         this.gameOver();
         //this.hideDialog();
@@ -170,10 +171,10 @@ const game = {
         const $healingPlayer = $('<div id="healingPlayer"> '+healingPlayer.name+' healed for 10 health, they have '+healingPlayer.health+' remaining!</div>')
         $('h3').append($healingPlayer)
         $("h3").empty().show().html($healingPlayer).delay(1000).fadeOut(500)
-        //this.hideDialog();
+        game.switchPlayer();
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
-        if (this.time < 1) {
+        if (this.time < 0) {
             return true;
             game.switchPlayer();
             alert('Round Over switch players')
@@ -192,15 +193,11 @@ const game = {
         this.players[this.activePlayerIndex] = new Player(playerName, playerSelection);
         game.switchPlayer();
 
-        // if(this.players[1] != null){
-        //     return true
-        //     game.showBattlefield();
-
-
     },
     showBattlefield(){
         if(this.players[1] != null){
             this.setTimer();
+            this.gameOver();
 
             // return false
             
@@ -246,14 +243,14 @@ const game = {
         //console.log(this.players)
         if(this.players[0].health <= 0) {
             this.isGameOver = true
-            const $gameOver = $('<div id="gameOver">Player Two Wins!</div>')
-            $('h3').append($gameOver);
-            $gameOver.text
+            const $gameOver = $('<div class="gameOver">Player Two Wins!</div>')
+            $('h4').append($gameOver);
+            //$gameOver.text
             //alert('game over, player two wins');
         } else if(this.players[1].health <= 0){
             this.isGameOver = true
-            const $gameOver2 = $('<div id="gameOver2">Player One Wins!</div>')
-            $('h3').append($gameOver2)
+            const $gameOver2 = $('<div class="gameOver">Player One Wins!</div>')
+            $('h4').append($gameOver2)
             //flashingColors();
         }
     }
@@ -284,6 +281,7 @@ $('#form1').on('submit', () => {
 })
 $('#attack').on('click', () => {
     game.basicAttack(0);
+    clearInterval(interval)
 
 })
 
