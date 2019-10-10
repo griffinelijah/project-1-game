@@ -78,10 +78,10 @@ const game = {
         $($playerNames).hide();
         const $attackButtons = $('.attack-buttons')
         $($attackButtons).hide();
-        const $hpBar1 = $('.health-bar1')
-        $($hpBar1).hide();
-        const $hpBar2 = $('.health-bar2')
-        $($hpBar2).hide();
+        const $p1health = $('#p1health')
+        $($p1health).hide();
+        const $p2health = $('#p2health')
+        $($p2health).hide();
     },
 
     //start will take input to name each character
@@ -116,7 +116,6 @@ const game = {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
 
-        //const $progressValue = $('#p1health').attr('value')
         if(attackingPlayerIndex === 0){
             const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
             $progressValue = $('#p2health').attr('value', $healthValue)
@@ -124,14 +123,7 @@ const game = {
             const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
         $progressValue = $('#p1health').attr('value', $healthValue)
         }
-        // console.log($progressValue);
-        //console.log($healthValue);
-        // defendingPlayer.health -= attackingPlayer.attackValue;
-        
-
-
         const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
-        // let health  = $('#health')
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
         
@@ -142,11 +134,17 @@ const game = {
     ultimateAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
-        defendingPlayer.health -=  attackingPlayer.ultimateValue
-        game.switchPlayer();
+        if(attackingPlayerIndex === 0){
+            const $healthValue = defendingPlayer.health -= attackingPlayer.ultimateValue;
+            $progressValue = $('#p2health').attr('value', $healthValue)
+        } else if(attackingPlayerIndex === 1){
+            const $healthValue = defendingPlayer.health -= attackingPlayer.ultimateValue;
+        $progressValue = $('#p1health').attr('value', $healthValue)
+        }
         const $ultiAttacking = $('<div id="ultiAttacking"> '+attackingPlayer.name+' used an ultimate for '+attackingPlayer.ultimateValue+' damage!</div>')
         $('h3').append($ultiAttacking)
         $("h3").empty().show().html($ultiAttacking).delay(1000).fadeOut(500)
+        game.switchPlayer();
         this.gameOver();
         //this.hideDialog();
     }, 
@@ -156,6 +154,13 @@ const game = {
     // }
     heal(healingPlayerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past `maximum health pool
         const healingPlayer = this.players[healingPlayerIndex]
+        if(healingPlayerIndex === 0){
+            const $healthValue = healingPlayer.health += 10
+            $progressValue = $('#p1health').attr('value', $healthValue)
+        } else if(healingPlayerIndex === 1){
+            const $healthValue = healingPlayer.health += 10
+            $progressValue = $('#p2health').attr('value', $healthValue)
+        }
         if(healingPlayer.health < this.players[healingPlayerIndex].health){
         healingPlayer.health += 10
         const $maxHealth = $('<div id="maxHp"> '+healingPlayer.name+' is at maximum health')
@@ -210,13 +215,13 @@ const game = {
             const $timerHide = $('h2')
             const $playerNames = $('.playerNames')
             const $attackButtons = $('.attack-buttons')
-            const $hpBar1 = $('.health-bar1')
-            const $hpBar2 = $('.health-bar2')
+            const $p1health = $('#p1health')
+            const $p2health = $('#p2health')
             $($timerHide).show();
             $($playerNames).show();
             $($attackButtons).show();
-            $($hpBar1).show();
-            $($hpBar2).show();
+            $($p1health).show();
+            $($p2health).show();
             $($charNames).hide();
             $($charPics).hide();
             $($selectors).hide();
