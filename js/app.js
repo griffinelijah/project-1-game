@@ -46,15 +46,15 @@ const characters = [{
 ]
 
 class Player {
-	constructor(humanName, char){
-    	this.humanName = humanName;
+    constructor(humanName, char) {
+        this.humanName = humanName;
         //this.char = characters[char]
         this.name = characters[char].name;
         this.health = characters[char].health;
         this.attackValue = characters[char].attackValue;
         this.ultimateValue = characters[char].ultimateValue;
         this.image = characters[char].image
-	}
+    }
     attack(player) {
 
     }
@@ -66,12 +66,12 @@ const game = {
     time: 15,
     char: null,
     players: [null, null],
-    activePlayerIndex: 0,  // 0 or 1
+    activePlayerIndex: 0, // 0 or 1
     isGameOver: false,
 
-    
+
     //this function holds all elements that will be hidden upon loading the game
-    hiddenElements(){
+    hiddenElements() {
         const $timerHide = $('h2')
         $($timerHide).hide();
         const $playerNames = $('.playerNames')
@@ -94,7 +94,7 @@ const game = {
     },
 
     switchPlayer() {
-        if(this.activePlayerIndex === 0){
+        if (this.activePlayerIndex === 0) {
             this.activePlayerIndex = 1
         } else {
             this.activePlayerIndex = 0
@@ -105,67 +105,67 @@ const game = {
         const interval = setInterval(() => {
             $timer.text(`Timer: ${this.time}`);
             this.time--;
-            if(this.endRound() || this.isGameOver === true) {
+            if (this.endRound() || this.isGameOver === true) {
                 clearInterval(interval)
             }
-        
+
         }, 1000)
     }, //basic attack for characteer 1
     basicAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
 
-        if(attackingPlayerIndex === 0){
+        if (attackingPlayerIndex === 0) {
             const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
             $progressValue = $('#p2health').attr('value', $healthValue)
-        } else if(attackingPlayerIndex === 1){
+        } else if (attackingPlayerIndex === 1) {
             const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
-        $progressValue = $('#p1health').attr('value', $healthValue)
+            $progressValue = $('#p1health').attr('value', $healthValue)
         }
-        const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
+        const $attacking = $('<div id="attack"> ' + attackingPlayer.name + '  attacked for  ' + attackingPlayer.attackValue + '   damage!</div>')
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
         game.switchPlayer();
         this.gameOver();
         //this.hideDialog();
-    }, 
+    },
     ultimateAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
-        if(attackingPlayerIndex === 0){
+        if (attackingPlayerIndex === 0) {
             const $healthValue = defendingPlayer.health -= attackingPlayer.ultimateValue;
             $progressValue = $('#p2health').attr('value', $healthValue)
-        } else if(attackingPlayerIndex === 1){
+        } else if (attackingPlayerIndex === 1) {
             const $healthValue = defendingPlayer.health -= attackingPlayer.ultimateValue;
-        $progressValue = $('#p1health').attr('value', $healthValue)
+            $progressValue = $('#p1health').attr('value', $healthValue)
         }
-        const $ultiAttacking = $('<div id="ultiAttacking"> '+attackingPlayer.name+' used an ultimate for '+attackingPlayer.ultimateValue+' damage!</div>')
+        const $ultiAttacking = $('<div id="ultiAttacking"> ' + attackingPlayer.name + ' used an ultimate for ' + attackingPlayer.ultimateValue + ' damage!</div>')
         $('h3').append($ultiAttacking)
         $("h3").empty().show().html($ultiAttacking).delay(1000).fadeOut(500)
         game.switchPlayer();
         this.gameOver();
         //this.hideDialog();
-    }, 
+    },
     // }, //block function that allows player to take reduced damae from the following attack
     //make it a status that is check before enemy attacks and reduce incoming damage by half?
     // block(){
     // }
     heal(healingPlayerIndex) { //Heals character one by 10 health. Need to fix logic so that character cannot heal past `maximum health pool
         const healingPlayer = this.players[healingPlayerIndex]
-        if(healingPlayerIndex === 0){
+        if (healingPlayerIndex === 0) {
             const $healthValue = healingPlayer.health += 10
             $progressValue = $('#p1health').attr('value', $healthValue)
-        } else if(healingPlayerIndex === 1){
+        } else if (healingPlayerIndex === 1) {
             const $healthValue = healingPlayer.health += 10
             $progressValue = $('#p2health').attr('value', $healthValue)
         }
-        if(healingPlayer.health < this.players[healingPlayerIndex].health){
-        healingPlayer.health += 10
-        const $maxHealth = $('<div id="maxHp"> '+healingPlayer.name+' is at maximum health')
-    } else{
-        console.log('you are at max health');
-    }
-        const $healingPlayer = $('<div id="healingPlayer"> '+healingPlayer.name+' healed for 10 health, they have '+healingPlayer.health+' remaining!</div>')
+        if (healingPlayer.health < this.players[healingPlayerIndex].health) {
+            healingPlayer.health += 10
+            const $maxHealth = $('<div id="maxHp"> ' + healingPlayer.name + ' is at maximum health')
+        } else {
+            console.log('you are at max health');
+        }
+        const $healingPlayer = $('<div id="healingPlayer"> ' + healingPlayer.name + ' healed for 10 health, they have ' + healingPlayer.health + ' remaining!</div>')
         $('h3').append($healingPlayer)
         $("h3").empty().show().html($healingPlayer).delay(1000).fadeOut(500)
         game.switchPlayer();
@@ -175,11 +175,11 @@ const game = {
             return true;
             game.switchPlayer();
             alert('Round Over switch players')
-        }   else{
+        } else {
             return false
         }
     },
-    chooseCharacter(playerName, playerSelection){
+    chooseCharacter(playerName, playerSelection) {
 
         //this needs to be updated to implement seletion for both players
 
@@ -191,20 +191,20 @@ const game = {
         game.switchPlayer();
 
     },
-    showBattlefield(){
-        if(this.players[1] != null){
+    showBattlefield() {
+        if (this.players[1] != null) {
             this.setTimer();
             this.gameOver();
 
             // return false
-            
-            const $playerOnePic = $('<img class="playOnePic" src="'+this.players[0].image+'"></img>').appendTo('#playOneChar')
+
+            const $playerOnePic = $('<img class="playOnePic" src="' + this.players[0].image + '"></img>').appendTo('#playOneChar')
             game.switchPlayer();
-            const $playerTwoPic = $('<img class="playTwoPic" src="'+this.players[1].image+'"></img>').appendTo('#playTwoChar')
+            const $playerTwoPic = $('<img class="playTwoPic" src="' + this.players[1].image + '"></img>').appendTo('#playTwoChar')
             const $charNames = $('.charNames')
             const $charPics = $('.charPics')
             const $selectors = $('.buttons')
-            const $forms  = $('.forms')
+            const $forms = $('.forms')
             const $chooseH1 = $('h1')
             const $timerHide = $('h2')
             const $playerNames = $('.playerNames')
@@ -223,10 +223,10 @@ const game = {
             $chooseH1.hide();
 
         }
-    },//this function will be ran to hide dialog messages after five seeconds so pag is not cluttered during battle
+    }, //this function will be ran to hide dialog messages after five seeconds so pag is not cluttered during battle
     // hideDialog() { 
     //             $("h3").empty().show().html().delay(1000).fadeOut(500)
-                
+
     //             // $('#GFG_DOWN').text("Div hides after 1 second.");      
     //         }, 
 
@@ -238,13 +238,13 @@ const game = {
 
     gameOver() {
         //console.log(this.players)
-        if(this.players[0].health <= 0) {
+        if (this.players[0].health <= 0) {
             this.isGameOver = true
             const $gameOver = $('<div class="gameOver">Player Two Wins!</div>')
             $('h4').append($gameOver);
             //$gameOver.text
             //alert('game over, player two wins');
-        } else if(this.players[1].health <= 0){
+        } else if (this.players[1].health <= 0) {
             this.isGameOver = true
             const $gameOver2 = $('<div class="gameOver">Player One Wins!</div>')
             $('h4').append($gameOver2)
@@ -260,7 +260,7 @@ const game = {
     //     } else(this.players[1].health <= 0) {
     //         alert('game over, player on wins');
 
-        
+
     // // }
 
     //this temporarily serves as a way for me to hide certain elements while i layout my UI
@@ -307,8 +307,8 @@ $('.buttons').on('click', (event) => {
     const playerSelection = event.target.id
     game.chooseCharacter($playerName, playerSelection);
     game.showBattlefield();
-    
-    
 
-})  
+
+
+})
 
