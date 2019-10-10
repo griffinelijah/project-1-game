@@ -105,10 +105,7 @@ const game = {
         const interval = setInterval(() => {
             $timer.text(`Timer: ${this.time}`);
             this.time--;
-            if(this.endRound()) {
-                clearInterval(interval)
-            }
-            if(this.gameOver()) {
+            if(this.endRound() || this.isGameOver === true) {
                 clearInterval(interval)
             }
         

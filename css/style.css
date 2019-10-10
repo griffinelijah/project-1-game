@@ -27,7 +27,7 @@ h2 {
 #firstCharacter {
 	display: inline-block;
 	margin-bottom: 1%;
-	margin-left: 19%;
+	margin-left: 16%;
 }
 
 #firstCharacter img{
@@ -65,7 +65,7 @@ h2 {
 #fourthCharacter {
 	display: inline-block;
 	margin-top: 1%;
-	margin-left: 19%
+	margin-left: 16%
 }
 
 #fourthCharacter img{
@@ -158,7 +158,7 @@ h2 {
 .inputButtons {
     background-color: lightgrey;
     font-family: 'Press Start 2P', cursive;
-    margin: 3px;
+    /*margin: 3px;*/
     padding: 6px;
 }
 
