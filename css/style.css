@@ -100,14 +100,28 @@ h2 {
 	height: 250px;
 }
 
+#playOneChar {
+	display: inline-block;
+	width: 20%;
+}
+#playOneChar img{
+	width: 350px;
+	height: 350px;
+}
 
+#playTwoChar {
+	display: inline-block;
+	width: 20%;
 
+}
+#playTwoChar img{
+	height: 350px;
+	width: 350px ;
+}
 
-.characters2 {
-	display: block;
-	/*flex-wrap: wrap;
-	/*justify-content: space-between;*/
-	/*width: 1100px;*/
+.charContainer {
+	display: inline-block;
+	/*align-items: baseline;*/
 }
 
 .forms {
@@ -137,7 +151,7 @@ h2 {
 #buttonsContainer2 {
 	display: inline-block;
 	justify-content: space-between;
-	margin-left: 975px;
+	margin-left: 8%;
 
 }
 
@@ -197,33 +211,6 @@ h2 {
 	background: grey; 
 }
 
-/*#devo {
-	height: 70%;
-	width: 65%;
-}
-#fayde {
-	height: 70%;
-	width: 65%;
-
-}
-#glac {
-	height: 70%;
-	width: 65%;
-
-}
-#pyro {
-	height: 70%;
-	width: 65%;
-}
-#soul {
-	height: 70%;
-	width: 65%;
-}
-#swift {
-	height: 70%;
-	width: 65%;
-}*/
-
 .charNames {
 	font-family: 'Press Start 2P', cursive;
 	font-size: 22px;
@@ -237,13 +224,13 @@ h2 {
 }
 
 .playOnePic {
-	height: 350px;
-	width: 350px;
+	height: 45%;
+	width: 45%;
 }
 
 .playTwoPic {
-	height: 350px;
-	width: 350px;
+	height: 45%;
+	width: 45%;
 }
 
 #gameOver {
@@ -286,11 +273,6 @@ h2 {
 	-webkit-text-stroke-color: black
 }
 
-
-.charPics {
-	width: 100px;
-
-}
 
 
 
