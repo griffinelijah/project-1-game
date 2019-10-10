@@ -75,6 +75,10 @@ const game = {
         $($playerNames).hide();
         const $attackButtons = $('.attack-buttons')
         $($attackButtons).hide();
+        const $hpBar1 = $('.health-bar1')
+        $($hpBar1).hide();
+        const $hpBar2 = $('.health-bar2')
+        $($hpBar2).hide();
     },
 
     //start will take input to name each character
@@ -111,6 +115,7 @@ const game = {
         defendingPlayer.health -= attackingPlayer.attackValue;
         game.switchPlayer();
         const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
+
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
         this.gameOver();
@@ -185,14 +190,19 @@ const game = {
             const $timerHide = $('h2')
             const $playerNames = $('.playerNames')
             const $attackButtons = $('.attack-buttons')
+            const $hpBar1 = $('.health-bar1')
+            const $hpBar2 = $('.health-bar2')
             $($timerHide).show();
             $($playerNames).show();
             $($attackButtons).show();
+            $($hpBar1).show();
+            $($hpBar2).show();
             $($charNames).hide();
             $($charPics).hide();
             $($selectors).hide();
             $($forms).hide();
             $chooseH1.hide();
+
         }
     },//this function will be ran to hide dialog messages after five seeconds so pag is not cluttered during battle
     // hideDialog() { 
