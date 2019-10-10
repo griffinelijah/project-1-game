@@ -23,6 +23,12 @@ h2 {
 
 }
 
+.characters {
+	display: flex;
+	width: 400px	;
+	/*justify-content: */
+}
+
 .forms {
 	display: flex;
 /*	justify-content: center;
@@ -108,10 +114,6 @@ h2 {
 
 .buttons:active {
 	background: grey; 
-}
-
-.characters {
-	display: block;
 }
 
 #devo {

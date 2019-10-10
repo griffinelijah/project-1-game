@@ -45,8 +45,6 @@ const characters = [{
     }
 ]
 
-
-console.log(characters[0]);
 class Player {
 	constructor(humanName, char){
     	this.humanName = humanName;
@@ -133,16 +131,17 @@ const game = {
         const healingPlayer = this.players[healingPlayerIndex]
         if(healingPlayer.health < this.players[healingPlayerIndex].health){
         healingPlayer.health += 10
+        const $maxHealth = $('<div id="maxHp"> '+healingPlayer.name+' is at maximum health')
     } else{
         console.log('you are at max health');
     }
         const $healingPlayer = $('<div id="healingPlayer"> '+healingPlayer.name+' healed for 10 health, they have '+healingPlayer.health+' remaining!</div>')
         $('h3').append($healingPlayer)
-        console.log(healingPlayer + healingPlayer.health + ' health remaining!');
     },
     endRound() { //if timer reaches zero end countdown and display alert statnig round is over
         if (this.time < 1) {
             return true;
+            game.switchPlayer();
             alert('Round Over switch players')
         }   else{
             return false
@@ -163,7 +162,6 @@ const game = {
         //     return true
         //     game.showBattlefield();
 
-        
 
     },
     showBattlefield(){
