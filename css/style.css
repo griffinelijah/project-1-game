@@ -23,16 +23,96 @@ h2 {
 
 }
 
-.characters {
+/*.charactersSection {
 	display: flex;
-	width: 400px	;
-	/*justify-content: */
+}*/
+
+/*.characters1 {*/
+	/*display: inline-block;*/
+	/*justify-content: space-between;*/
+	/*width: 1100px;*/
+	/*flex-wrap: wrap;*/
+	/*justify-content: space-between;*/
+/*}*/
+
+#firstCharacter {
+	display: inline-block;
+	margin-bottom: 3%;
+	margin-left: 23%;
+}
+
+#firstCharacter img{
+	display: block;
+}
+
+#secondCharacter {
+	display: inline-block;
+	margin-bottom: 3%;
+	margin-right: 8%;
+	margin-left: 8%;
+}
+
+#secondCharacter img{
+	display: block;
+}
+
+#thirdCharacter {
+	display: inline-block;
+	margin-bottom: 3%;
+	margin-left: 1%;
+	margin-right: 20%;
+}
+
+#thirdCharacter img{
+	display: block;
+}
+
+#fourthCharacter {
+	display: inline-block;
+	margin-top: 3%;
+	margin-left: 23%
+}
+
+#fourthCharacter img{
+	display: block;
+}
+
+#fifthCharacter {
+	display: inline-block;
+	margin-top: 3%;
+	margin-right: 8%;
+	margin-left: 8%;
+}
+
+#fifthCharacter img{
+	display: block;
+}
+
+#sixthCharacter {
+	display: inline-block;
+	margin-top: 3%;
+	margin-left: 1%;
+	margin-right: 15%;
+}
+
+#sixthCharacter img{
+	display: block;
+}
+
+
+
+
+.characters2 {
+	display: block;
+	/*flex-wrap: wrap;
+	/*justify-content: space-between;*/
+	/*width: 1100px;*/
 }
 
 .forms {
 	display: flex;
-/*	justify-content: center;
-*/
+	justify-content: center;
+
 }
 
 .playerNames {
@@ -116,36 +196,32 @@ h2 {
 	background: grey; 
 }
 
-#devo {
-	height: 300px;
-	width: 425px;
-	display: inline;	
+/*#devo {
+	height: 70%;
+	width: 65%;
 }
 #fayde {
-	height: 350px;
-	width: 350px;
-	display: inline;
+	height: 70%;
+	width: 65%;
+
 }
 #glac {
-	height: 250px;
-	width: 200px;
-	display: inline;
+	height: 70%;
+	width: 65%;
+
 }
 #pyro {
-	height: 350px;
-	width:350px;
-	display: inline;
+	height: 70%;
+	width: 65%;
 }
 #soul {
-	height: 400px;
-	width: 350px;
-	display: inline;
+	height: 70%;
+	width: 65%;
 }
 #swift {
-	height: 325px;
-	width: 300px;
-	display: inline;	
-}
+	height: 70%;
+	width: 65%;
+}*/
 
 .charNames {
 	font-family: 'Press Start 2P', cursive;
@@ -207,6 +283,12 @@ h2 {
 	color: white;
 	-webkit-text-stroke-width: 1px;
 	-webkit-text-stroke-color: black
+}
+
+
+.charPics {
+	width: 100px;
+
 }
 
 
