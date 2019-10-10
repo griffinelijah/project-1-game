@@ -55,6 +55,9 @@ class Player {
         this.ultimateValue = characters[char].ultimateValue;
         this.image = characters[char].image
 	}
+    attack(player) {
+
+    }
 }
 
 
@@ -112,12 +115,22 @@ const game = {
     basicAttack(attackingPlayerIndex) {
         const attackingPlayer = this.players[attackingPlayerIndex]
         const defendingPlayer = this.players[attackingPlayerIndex === 0 ? 1 : 0]
-        defendingPlayer.health -= attackingPlayer.attackValue;
-        game.switchPlayer();
-        const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
 
+        //const $progressValue = $('#p1health').attr('value')
+        const $healthValue = defendingPlayer.health -= attackingPlayer.attackValue;
+        $progressValue = $('#p1health').attr('value', $healthValue)
+        console.log($progressValue);
+        //console.log($healthValue);
+        // defendingPlayer.health -= attackingPlayer.attackValue;
+        
+
+
+        const $attacking = $('<div id="attack"> '+attackingPlayer.name+'  attacked for  '+attackingPlayer.attackValue+'   damage!</div>')
+        // let health  = $('#health')
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
+        
+        game.switchPlayer();
         this.gameOver();
         //this.hideDialog();
     }, 
@@ -177,6 +190,8 @@ const game = {
     },
     showBattlefield(){
         if(this.players[1] != null){
+            this.setTimer();
+
             // return false
             
             const $playerOnePic = $('<img class="playOnePic" src="'+this.players[0].image+'"></img>').appendTo('#playOneChar')
@@ -282,18 +297,13 @@ $('#heal2').on('click', () => {
     game.heal(1);
 })
 $('.buttons').on('click', (event) => {
-    const $playerOneName = $('#input-box').val();
-    const playerOneSelection = event.target.id
-    game.chooseCharacter($playerOneName, playerOneSelection);
-    game.switchPlayer();
-    const $playerTwoName = $('#input-box2').val();
-    const playerTwoSelection = event.target.id
-    game.chooseCharacter($playerTwoName, playerTwoSelection);
+    const $playerName = $('#input-box').val();
+    // empty out input box
+    const playerSelection = event.target.id
+    game.chooseCharacter($playerName, playerSelection);
     game.showBattlefield();
-    game.setTimer();
-    // this.player2 = new Player($playerTwoName, playerTwoSelection)
-    // game.chooseCharacter(1)
-    // console.log('This is player two selection', playerTwo.selectedChar);
+    
+    
 
 })  
 
