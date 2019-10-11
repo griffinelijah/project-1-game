@@ -62,8 +62,8 @@ class Player {
         this.attackValue = characters[char].attackValue;
         this.ultimateValue = characters[char].ultimateValue;
         this.image = characters[char].image
-        this.attackAnimation = characters[char].attackAnimation
-        this.ultimateAnimation = characters[char].ultimateAnimation
+        // this.attackAnimation = characters[char].attackAnimation
+        // this.ultimateAnimation = characters[char].ultimateAnimation
     }
     attack(player) {
 
