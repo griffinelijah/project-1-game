@@ -132,7 +132,7 @@ const game = {
             $progressValue = $('#p1health').attr('value', $healthValue)
             // const $attackAnimationTwo = $(`<img class="attackAni" src=${this.players[1].attackAnimation}></img>`).appendTo('#attackAnimation').fadeOut(2000)
         }
-        const $attacking = $('<div id="attack"> ' + attackingPlayer.name + '  attacked for  ' + attackingPlayer.attackValue + '   damage!</div>')
+        const $attacking = $('<div id="attack"> ' + attackingPlayer.name + '  attacked for  ' + attackingPlayer.attackValue + '   damage!</div>').css('color', 'red')
         $('h3').append($attacking)
         $("h3").empty().show().html($attacking).delay(1000).fadeOut(500)
         game.switchPlayer();
@@ -148,7 +148,7 @@ const game = {
             const $healthValue = defendingPlayer.health -= attackingPlayer.ultimateValue;
             $progressValue = $('#p1health').attr('value', $healthValue)
         }
-        const $ultiAttacking = $('<div id="ultiAttacking"> ' + attackingPlayer.name + ' used an ultimate for ' + attackingPlayer.ultimateValue + ' damage!</div>')
+        const $ultiAttacking = $('<div id="ultiAttacking"> ' + attackingPlayer.name + ' used an ultimate for ' + attackingPlayer.ultimateValue + ' damage!</div>').css('color', 'red')
         $('h3').append($ultiAttacking)
         $("h3").empty().show().html($ultiAttacking).delay(1000).fadeOut(500)
         game.switchPlayer();
@@ -163,7 +163,7 @@ const game = {
             const $healthValue = healingPlayer.health += 10
             $progressValue = $('#p2health').attr('value', $healthValue)
         }
-        const $healingPlayer = $('<div id="healingPlayer"> ' + healingPlayer.name + ' healed for 10 health!</div>')
+        const $healingPlayer = $('<div id="healingPlayer"> ' + healingPlayer.name + ' healed for 10 health!</div>').css('color', 'green')
         $('h3').append($healingPlayer)
         $("h3").empty().show().html($healingPlayer).delay(1000).fadeOut(500)
         game.switchPlayer();
@@ -217,12 +217,12 @@ const game = {
         //game ends if either players health bar gets below zero and text is displayed corresponding to playre that wins
         if (this.players[0].health <= 0) {
             this.isGameOver = true
-            const $gameOver = $('<div class="gameOver">Player Two Wins!</div>')
+            const $gameOver = $('<div class="gameOver">Player Two Wins!</div>').css('color', 'red')
             $('h4').append($gameOver);
            
         } else if (this.players[1].health <= 0) {
             this.isGameOver = true
-            const $gameOver2 = $('<div class="gameOver">Player One Wins!</div>')
+            const $gameOver2 = $('<div class="gameOver">Player One Wins!</div>').css('color', 'red')
             $('h4').append($gameOver2)
             //flashingColors();
         }
